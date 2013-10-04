@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="CJCMS.Domain" assembly="CJCMS.Domain">
+	<class name="CJCMS.Domain.Entity.Product, CJCMS.Domain" table="[dbo].[Product]" lazy="true">
+		<id name="Id" column="[Id]">
+		 	<generator class="assigned" />
+		</id>
+		<property name="CategoryId" column="[CategoryId]" />
+		<property name="ProductName" column="[ProductName]" />
+		<property name="Unit" column="[Unit]" />
+		<property name="InPrice" column="[InPrice]" />
+		<property name="SingleOutPrice" column="[SingleOutPrice]" />
+		<property name="MultiOutPrice" column="[MultiOutPrice]" />
+		<property name="InitCount" column="[InitCount]" />
+		<property name="NowCount" column="[NowCount]" />
+		<property name="UpperCount" column="[UpperCount]" />
+		<property name="LowerCount" column="[LowerCount]" />
+		<property name="Updated" column="[Updated]" />
+		<property name="Created" column="[Created]" />
+		<property name="Status" column="[Status]" />
+		<property name="OtherInfo" column="[OtherInfo]" />
+	</class>
+</hibernate-mapping>
+

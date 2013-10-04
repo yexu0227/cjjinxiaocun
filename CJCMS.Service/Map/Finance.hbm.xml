@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="CJCMS.Domain" assembly="CJCMS.Domain">
+	<class name="CJCMS.Domain.Entity.Finance, CJCMS.Domain" table="[dbo].[Finance]" lazy="true">
+		<id name="Id" column="[Id]">
+		 	<generator class="assigned" />
+		</id>
+		<property name="Time" column="[Time]" />
+		<property name="TicketId" column="[TicketId]" />
+		<property name="Resone" column="[Resone]" />
+		<property name="TargetUserName" column="[TargetUserName]" />
+		<property name="InMoney" column="[InMoney]" />
+		<property name="OutMoney" column="[OutMoney]" />
+		<property name="OtherInfo" column="[OtherInfo]" />
+	</class>
+</hibernate-mapping>
+

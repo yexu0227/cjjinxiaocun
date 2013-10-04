@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="CJCMS.Domain" assembly="CJCMS.Domain">
+	<class name="CJCMS.Domain.Entity.Customer, CJCMS.Domain" table="[dbo].[Customer]" lazy="true">
+		<id name="Id" column="[Id]">
+		 	<generator class="assigned" />
+		</id>
+		<property name="CustomerName" column="[CustomerName]" />
+		<property name="ContactName" column="[ContactName]" />
+		<property name="CustomerPhomeNum" column="[CustomerPhomeNum]" />
+		<property name="CustomerQQ" column="[CustomerQQ]" />
+		<property name="CustomerFaxNum" column="[CustomerFaxNum]" />
+		<property name="CustomerAddress" column="[CustomerAddress]" />
+		<property name="CustomerZipCode" column="[CustomerZipCode]" />
+		<property name="CustomerEmail" column="[CustomerEmail]" />
+		<property name="CustomerInitOwing" column="[CustomerInitOwing]" />
+		<property name="CustomerNowOwing" column="[CustomerNowOwing]" />
+		<property name="Updated" column="[Updated]" />
+		<property name="Created" column="[Created]" />
+		<property name="Status" column="[Status]" />
+		<property name="OtherInfo" column="[OtherInfo]" />
+	</class>
+</hibernate-mapping>
+
