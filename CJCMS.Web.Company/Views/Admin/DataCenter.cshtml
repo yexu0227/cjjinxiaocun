@@ -1,0 +1,687 @@
+﻿@model String
+@{
+    Layout = null;
+}
+    <link rel="stylesheet" href="@Url.Content("~/Content/ForAdmin/Tree/demo.css")" type="text/css">
+	<link rel="stylesheet" href="@Url.Content("~/Content/ForAdmin/Tree/zTreeStyle/zTreeStyle.css")" type="text/css">
+	<script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/Tree/jquery.ztree.core-3.4.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/Tree/jquery.ztree.excheck-3.4.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/Tree/jquery.ztree.exedit-3.4.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/Tree/jquery.mousewheel-3.0.4.pack.js")"></script>
+    @*<script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/Tree/ui-modals.js")"></script>*@
+    <script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/jquery.validate.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/additional-methods.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/ajaxformtool.js")"></script>
+<SCRIPT type="text/javascript">
+		
+		var setting = {
+			view: {
+				addHoverDom: addHoverDom,
+				removeHoverDom: removeHoverDom,
+				selectedMulti: false
+			},
+			edit: {
+				enable: true,
+				editNameSelectAll: true,
+				drag: {
+					autoExpandTrigger: true,
+					prev: dropPrev,
+					inner: dropInner,
+					next: dropNext
+				}
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			callback: {
+				beforeEditName: beforeEditName,
+				beforeRemove: beforeRemove,
+				beforeRename: beforeRename,
+				onRemove: onRemove,
+				onRename: onRename,
+				beforeDrag: beforeDrag,
+				beforeDrop: beforeDrop,
+				beforeDragOpen: beforeDragOpen,
+				onDrag: onDrag
+			}
+		};
+		//var zNodes = [
+        //        { id: 1, pId: 0, name: "父节点 1", open: true },
+        //        { id: 11, pId: 1, name: "叶子节点 1-1" },
+        //        { id: 12, pId: 1, name: "叶子节点 1-2" },
+        //        { id: 13, pId: 1, name: "叶子节点 1-3" },
+        //        { id: 2, pId: 0, name: "父节点 2", open: true },
+        //        { id: 21, pId: 2, name: "叶子节点 2-1" },
+        //        { id: 22, pId: 2, name: "叶子节点 2-2" },
+        //        { id: 23, pId: 2, name: "叶子节点 2-3" },
+        //        { id: 3, pId: 0, name: "父节点 3", open: true },
+        //        { id: 31, pId: 3, name: "叶子节点 3-1" },
+        //        { id: 32, pId: 3, name: "叶子节点 3-2" },
+        //        { id: 33, pId: 3, name: "叶子节点 3-3" }
+		//];
+		var zNodes = [@Html.Raw(ViewBag.TreeContent)
+            ];
+        
+		//var log, className = "dark";
+		function dropPrev(treeId, nodes, targetNode) {
+			var pNode = targetNode.getParentNode();
+			if (pNode && pNode.dropInner === false) {
+				return false;
+			} else {
+				for (var i=0,l=curDragNodes.length; i<l; i++) {
+					var curPNode = curDragNodes[i].getParentNode();
+					if (curPNode && curPNode !== targetNode.getParentNode() && curPNode.childOuter === false) {
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+		function dropInner(treeId, nodes, targetNode) {
+			if (targetNode && targetNode.dropInner === false) {
+				return false;
+			} else {
+				for (var i=0,l=curDragNodes.length; i<l; i++) {
+					if (!targetNode && curDragNodes[i].dropRoot === false) {
+						return false;
+					} else if (curDragNodes[i].parentTId && curDragNodes[i].getParentNode() !== targetNode && curDragNodes[i].getParentNode().childOuter === false) {
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+		function dropNext(treeId, nodes, targetNode) {
+			var pNode = targetNode.getParentNode();
+			if (pNode && pNode.dropInner === false) {
+				return false;
+			} else {
+				for (var i=0,l=curDragNodes.length; i<l; i++) {
+					var curPNode = curDragNodes[i].getParentNode();
+					if (curPNode && curPNode !== targetNode.getParentNode() && curPNode.childOuter === false) {
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+
+		var log, className = "dark", curDragNodes, autoExpandNode;
+		function beforeDrag(treeId, treeNodes) {
+			className = (className === "dark" ? "":"dark");
+			showLog("[ "+getTime()+" beforeDrag ]&nbsp;&nbsp;&nbsp;&nbsp; drag: " + treeNodes.length + " nodes." );
+			for (var i=0,l=treeNodes.length; i<l; i++) {
+				if (treeNodes[i].drag === false) {
+					curDragNodes = null;
+					return false;
+				} else if (treeNodes[i].parentTId && treeNodes[i].getParentNode().childDrag === false) {
+					curDragNodes = null;
+					return false;
+				}
+			}
+			curDragNodes = treeNodes;
+			return true;
+		}
+		function beforeDragOpen(treeId, treeNode) {
+			autoExpandNode = treeNode;
+			return true;
+		}
+		function beforeDrop(treeId, treeNodes, targetNode, moveType, isCopy) {
+			if(!confirm("确定将数据移动到" + targetNode.name + "数据下吗？"))
+			{
+			    return false;
+			}
+			isok = 1;
+		    //移动
+			$.ajax({
+			    type: "POST",
+			    async: false,
+			    url: "/Admin/ChangeCategoryRoot/" + treeNodes[0].id + "/" + targetNode.id,
+			    error: function (request) {
+			        return false;
+			    },
+			    success: function (data) {
+			        if (data != "success") isok = 0;
+			        var unique_id = $.gritter.add({
+			            // (string | mandatory) the heading of the notification
+			            title: '提示信息',
+			            // (string | mandatory) the text inside the notification
+			            text: data,
+			            // (string | optional) the image to display on the left
+			            //image: './assets/img/avatar1.jpg',
+			            // (bool | optional) if you want it to fade out on its own or just sit there
+			            //sticky: true,
+			            // (int | optional) the time you want it to be alive for before fading out
+			            //time: '',
+			            // (string | optional) the class name you want to apply to that specific message
+			            //class_name: 'my-sticky-class'
+			        });
+			        
+			    }
+			});
+			if (isok == 0) return false;
+			className = (className === "dark" ? "":"dark");
+			showLog("[ "+getTime()+" beforeDrop ]&nbsp;&nbsp;&nbsp;&nbsp; moveType:" + moveType);
+			showLog("target: " + (targetNode ? targetNode.name : "root") + "  -- is "+ (isCopy==null? "cancel" : isCopy ? "copy" : "move"));
+			return true;
+		}
+		function onDrag(event, treeId, treeNodes) {
+			className = (className === "dark" ? "":"dark");
+			showLog("[ "+getTime()+" onDrag ]&nbsp;&nbsp;&nbsp;&nbsp; drag: " + treeNodes.length + " nodes." );
+		}
+		function onDrop(event, treeId, treeNodes, targetNode, moveType, isCopy) {
+			className = (className === "dark" ? "":"dark");
+			showLog("[ "+getTime()+" onDrop ]&nbsp;&nbsp;&nbsp;&nbsp; moveType:" + moveType);
+			showLog("target: " + (targetNode ? targetNode.name : "root") + "  -- is "+ (isCopy==null? "cancel" : isCopy ? "copy" : "move"))
+		}
+		function onExpand(event, treeId, treeNode) {
+			if (treeNode === autoExpandNode) {
+				className = (className === "dark" ? "":"dark");
+				showLog("[ "+getTime()+" onExpand ]&nbsp;&nbsp;&nbsp;&nbsp;" + treeNode.name);
+			}
+		}
+		
+		function beforeEditName(treeId, treeNode) {
+			className = (className === "dark" ? "":"dark");
+			showLog("[ "+getTime()+" beforeEditName ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			zTree.selectNode(treeNode);
+			if(confirm("确定修改数据" + treeNode.name + "吗？"))
+			{
+			    $("#pid").val(treeNode.pId);
+			    $("#cid").val(treeNode.id);
+			    $("#cname").val(treeNode.name);
+			    $("#cicon").val(treeNode.cicon);
+			    $("#cinfo").val(treeNode.cinfo);
+			    $("#csort").val(treeNode.csort);
+			    if (treeNode.cstatus == 'on')
+			    {
+			        $("#cstatus").attr("checked", true);
+			        $("#cstatus").parent().addClass("checked");
+			    }
+			    //修改
+			}
+			return false;
+		}
+		function beforeRemove(treeId, treeNode) {
+			className = (className === "dark" ? "":"dark");
+			showLog("[ "+getTime()+" beforeRemove ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			zTree.selectNode(treeNode);
+			if(confirm("确定删除数据字典 " + treeNode.name + "及其下面所有数据字典和有关内容吗（慎重操作）"))
+			{
+			    isok = 1;
+			    //删除
+			    $.ajax({
+			        type: "POST",
+			        async: false,
+			        url: "/Admin/DeleteCategory/" + treeNode.id,
+			        error: function (request) {
+			            alert(request);
+			        },
+			        success: function (data) {
+			            if (data != "success") isok = 0;
+			            var unique_id = $.gritter.add({
+			                // (string | mandatory) the heading of the notification
+			                title: '提示信息',
+			                // (string | mandatory) the text inside the notification
+			                text: data,
+			                // (string | optional) the image to display on the left
+			                //image: './assets/img/avatar1.jpg',
+			                // (bool | optional) if you want it to fade out on its own or just sit there
+			                //sticky: true,
+			                // (int | optional) the time you want it to be alive for before fading out
+			                //time: '',
+			                // (string | optional) the class name you want to apply to that specific message
+			                //class_name: 'my-sticky-class'
+			            });
+			            return false;
+			        }
+			    });
+			    if (isok == 0) return false;
+			}
+			else
+			{
+			    return false;
+			}
+		}
+		function onRemove(e, treeId, treeNode) {
+			showLog("[ "+getTime()+" onRemove ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);
+		}
+		function beforeRename(treeId, treeNode, newName) {
+			className = (className === "dark" ? "":"dark");
+			showLog("[ "+getTime()+" beforeRename ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);
+			if (newName.length == 0) {
+				alert("鑺傜偣鍚嶇О涓嶈兘涓虹┖.");
+				var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+				setTimeout(function(){zTree.editName(treeNode)}, 10);
+				return false;
+			}
+			return true;
+		}
+		function onRename(e, treeId, treeNode) {
+			showLog("[ "+getTime()+" onRename ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);
+		}
+		function showLog(str) {
+			if (!log) log = $("#log");
+			log.append("<li class='"+className+"'>"+str+"</li>");
+			if(log.children("li").length > 8) {
+				log.get(0).removeChild(log.children("li")[0]);
+			}
+		}
+		function getTime() {
+			var now= new Date(),
+			h=now.getHours(),
+			m=now.getMinutes(),
+			s=now.getSeconds(),
+			ms=now.getMilliseconds();
+			return (h+":"+m+":"+s+ " " +ms);
+		}
+
+		var newCount = 1;
+		function addHoverDom(treeId, treeNode) {
+			var sObj = $("#" + treeNode.tId + "_span");
+			if (treeNode.editNameFlag || $("#addBtn_"+treeNode.id).length>0) return;
+			var addStr = "<span class='button add' id='addBtn_" + treeNode.id
+				+ "' title='add node' onfocus='this.blur();'></span>";
+			sObj.after(addStr);
+			var btn = $("#addBtn_"+treeNode.id);
+			if (btn) btn.bind("click", function(){
+			    //var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+				//$("#various1").click();
+			    //$("input[name='cid']").val(treeNode.id);
+			    $("#pid").val(treeNode.id);
+				return false;
+			});
+		};
+		function removeHoverDom(treeId, treeNode) {
+			$("#addBtn_"+treeNode.id).unbind().remove();
+		};
+		function selectAll() {
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			zTree.setting.edit.editNameSelectAll =  $("#selectAll").attr("checked");
+		}
+		
+
+		    $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+		    $("#selectAll").bind("click", selectAll);
+
+		function LoadModel(url) {
+		    $('body').modalmanager('loading');
+
+		    setTimeout(function () {
+		        $modal.load(url, '', function () {
+		            $modal.modal();
+		        });
+		    }, 1000);
+		}
+    //--> 
+
+
+		var form1 = $('#form_sample_1');
+		var error1 = $('.alert-error', form1);
+		var success1 = $('.alert-success', form1);
+
+		form1.validate({
+		    errorElement: 'span', //default input error message container
+		    errorClass: 'help-inline', // default input error message class
+		    focusInvalid: false, // do not focus the last invalid input
+		    ignore: "",
+		    rules: {
+		        cname: {
+		            required: true
+		        },
+		        pid: {
+		            required: true
+		        },
+		        csort: {
+		            required: true
+		        }
+		    },
+
+		    invalidHandler: function (event, validator) { //display error alert on form submit              
+		       
+		        success1.hide();
+		        error1.show();
+		        App.scrollTo(error1, -200);
+		    },
+
+		    highlight: function (element) { // hightlight error inputs
+		        $(element)
+                    .closest('.help-inline').removeClass('ok'); // display OK icon
+		        $(element)
+                    .closest('.control-group').removeClass('success').addClass('error'); // set error class to the control group
+		    },
+
+		    unhighlight: function (element) { // revert the change dony by hightlight
+		        $(element)
+                    .closest('.control-group').removeClass('error'); // set error class to the control group
+		    },
+
+		    success: function (label) {
+		        label
+                    .addClass('valid').addClass('help-inline ok') // mark the current input as valid and display OK icon
+                .closest('.control-group').removeClass('error').addClass('success'); // set success class to the control group
+		    },
+
+		    submitHandler: function (form) {
+		        success1.show();
+		        error1.hide();
+		        $.ajax({
+		            type: "POST",
+		            url: '/Admin/DataCenterManager',
+		            data: getFormJson(form),
+		            error: function (request) {
+		                alert(request);
+		            },
+		            success: function (data) {
+		                $("#pid").val("");
+		                $("#id").val("");
+		                var unique_id = $.gritter.add({
+		                    // (string | mandatory) the heading of the notification
+		                    title: '提示信息',
+		                    // (string | mandatory) the text inside the notification
+		                    text: data,
+		                    // (string | optional) the image to display on the left
+		                    //image: './assets/img/avatar1.jpg',
+		                    // (bool | optional) if you want it to fade out on its own or just sit there
+		                    //sticky: true,
+		                    // (int | optional) the time you want it to be alive for before fading out
+		                    //time: '',
+		                    // (string | optional) the class name you want to apply to that specific message
+		                    //class_name: 'my-sticky-class'
+		                });
+		                return false;
+		            }
+		        });
+		        //return;
+		    }
+		});
+	</SCRIPT>
+<div class="container-fluid">
+    				<!-- BEGIN PAGE HEADER-->   
+
+				<div class="row-fluid">
+
+					<div class="span12">
+						<h3 class="page-title">
+
+							数据字典管理
+
+							 <small></small>
+
+						</h3>
+
+						<ul class="breadcrumb">
+
+							<li>
+
+								<i class="icon-home"></i>
+
+								<a href="/Admin/Index">操作中心面板</a> 
+
+								<span class="icon-angle-right"></span>
+
+							</li>
+
+							<li>
+
+								<a href="#">数据字典</a>
+
+								<span class="icon-angle-right"></span>
+
+							</li>
+
+							<li><a href="#">数据字典管理</a></li>
+
+						</ul>
+
+					</div>
+
+				</div>
+
+    <div class="row-fluid">
+        <div class="span4">
+		<ul id="treeDemo" class="ztree"></ul>
+         </div>
+        <div class="span8">
+            <!-- BEGIN VALIDATION STATES-->
+
+						<div class="portlet box blue">
+
+							<div class="portlet-title">
+
+								<div class="caption"><i class="icon-reorder"></i>数据字典信息</div>
+                                <div class="tools">
+
+									<a href="javascript:;" class="reload"></a>
+
+
+								</div>
+							</div>
+
+							<div class="portlet-body form">
+
+								<!-- BEGIN FORM-->
+
+                                    <form id = "form_sample_1" class = "form-horizontal" novalidate = "novalidate">
+
+                                    <div id="cerrorinfo" class="alert alert-error hide">
+                                         先选择左侧的树状数据
+									</div>
+									<div class="alert alert-error hide">                              
+                                        请更正错误并重试。
+									</div>
+
+									<div class="alert alert-success hide">
+
+										<button class="close" data-dismiss="alert"></button>
+
+										Your form validation is successful!
+
+									</div>
+                                    <div class="control-group" style="display:none">
+
+										<label class="control-label">编号<span class="required"></span></label>
+
+										<div class="controls">
+
+											<input id="cid" type="text" readonly name="cid" data-required="1" class="span6 m-wrap">
+
+										</div>
+
+									</div>
+
+                                    <div class="control-group" style="display:none">
+
+										<label class="control-label">父分类<span class="required"></span></label>
+
+										<div class="controls">
+
+											<input id="pid" type="text" readonly name="pid" data-required="1" class="span6 m-wrap">
+
+										</div>
+										
+
+									</div>
+
+									<div class="control-group">
+
+										<label class="control-label">名称<span class="required">*</span></label>
+
+										<div class="controls">
+
+											<input id="cname" type="text" name="cname" data-required="1" class="span6 m-wrap">
+
+										</div>
+
+									</div>
+                                    <div class="control-group">
+
+										<label class="control-label">启用<span class="required"></span></label>
+
+										<div class="controls">
+
+											<input id="cstatus" type="checkbox" name="cstatus" data-required="1" class="span6 m-wrap">
+
+										</div>
+
+									</div>
+
+                                    <div class="control-group">
+
+										<label class="control-label">排序<span class="required">*</span></label>
+
+										<div class="controls">
+
+											<input id="csort" type="text" name="csort" data-required="1" class="span6 m-wrap">
+
+										</div>
+										
+
+									</div>
+                                    
+									<div class="control-group">
+
+										<label class="control-label">图标<span class="required"></span></label>
+
+										<div class="controls">
+
+											<input id="cicon" type="text" name="cicon" data-required="1" class="span6 m-wrap">
+                                            <span class="help-block">注：若为导航数据则填写，否则不用填写</span>
+										</div>
+
+									</div>
+
+                                    <div class="control-group">
+
+										<label class="control-label">附加信息<span class="required"></span></label>
+
+										<div class="controls">
+
+											<input id="cinfo" type="text" name="cinfo" data-required="1" class="span6 m-wrap">
+                                            <span class="help-block">注：若为导航数据则填写链接，否则不用填写</span>
+									</div>
+
+									</div>
+
+									<div class="form-actions">
+
+										<button type="submit" class="btn blue">保存</button>
+
+										<button type="button" class="btn">取消</button>
+
+									</div>
+
+								</form>
+
+								<!-- END FORM-->
+
+							</div>
+
+						</div>
+
+						<!-- END VALIDATION STATES-->
+        </div>
+	</div>
+    <div class="row-fluid">
+								<div class="tab-pane active" id="tab_1_1">
+									<div class="row-fluid">
+										<div class="span12">
+											<h3>图标</h3>
+										</div>
+									</div>
+									<div class="row-fluid">
+										<div class="span3">
+											<ul class="unstyled">
+												<li><i class="icon-compass"></i> icon-compass</li>
+												<li><i class="icon-eur"></i> icon-eur</li>
+												<li><i class="icon-dollar"></i> icon-dollar <span class="muted"></span></li>
+												<li><i class="icon-yen"></i> icon-yen <span class="muted"></span></li>
+												<li><i class="icon-won"></i> icon-won <span class="muted"></span></li>
+												<li><i class="icon-file-text"></i> icon-file-text</li>
+												<li><i class="icon-sort-by-attributes-alt"></i> icon-sort-by-attributes-alt</li>
+												<li><i class="icon-thumbs-down"></i> icon-thumbs-down</li>
+												<li><i class="icon-xing-sign"></i> icon-xing-sign</li>
+												<li><i class="icon-instagram"></i> icon-instagram</li>
+												<li><i class="icon-bitbucket-sign"></i> icon-bitbucket-sign</li>
+												<li><i class="icon-long-arrow-up"></i> icon-long-arrow-up</li>
+												<li><i class="icon-windows"></i> icon-windows</li>
+												<li><i class="icon-skype"></i> icon-skype</li>
+												<li><i class="icon-male"></i> icon-male</li>
+												<li><i class="icon-archive"></i> icon-archive</li>
+												<li><i class="icon-renren"></i> icon-renren</li>
+											</ul>
+										</div>
+										<div class="span3">
+											<ul class="unstyled">
+												<li><i class="icon-collapse"></i> icon-collapse</li>
+												<li><i class="icon-euro"></i> icon-euro <span class="muted"></span></li>
+												<li><i class="icon-inr"></i> icon-inr</li>
+												<li><i class="icon-cny"></i> icon-cny</li>
+												<li><i class="icon-btc"></i> icon-btc</li>
+												<li><i class="icon-sort-by-alphabet"></i> icon-sort-by-alphabet</li>
+												<li><i class="icon-sort-by-order"></i> icon-sort-by-order</li>
+												<li><i class="icon-youtube-sign"></i> icon-youtube-sign</li>
+												<li><i class="icon-youtube-play"></i> icon-youtube-play</li>
+												<li><i class="icon-flickr"></i> icon-flickr</li>
+												<li><i class="icon-tumblr"></i> icon-tumblr</li>
+												<li><i class="icon-long-arrow-left"></i> icon-long-arrow-left</li>
+												<li><i class="icon-android"></i> icon-android</li>
+												<li><i class="icon-foursquare"></i> icon-foursquare</li>
+												<li><i class="icon-gittip"></i> icon-gittip</li>
+												<li><i class="icon-bug"></i> icon-bug</li>
+											</ul>
+										</div>
+										<div class="span3">
+											<ul class="unstyled">
+												<li><i class="icon-collapse-top"></i> icon-collapse-top</li>
+												<li><i class="icon-gbp"></i> icon-gbp</li>
+												<li><i class="icon-rupee"></i> icon-rupee <span class="muted"></span></li>
+												<li><i class="icon-renminbi"></i> icon-renminbi <span class="muted"></span></li>
+												<li><i class="icon-bitcoin"></i> icon-bitcoin <span class="muted"></span></li>
+												<li><i class="icon-sort-by-alphabet-alt"></i> icon-sort-by-alphabet-alt</li>
+												<li><i class="icon-sort-by-order-alt"></i> icon-sort-by-order-alt</li>
+												<li><i class="icon-youtube"></i> icon-youtube</li>
+												<li><i class="icon-dropbox"></i> icon-dropbox</li>
+												<li><i class="icon-adn"></i> icon-adn</li>
+												<li><i class="icon-tumblr-sign"></i> icon-tumblr-sign</li>
+												<li><i class="icon-long-arrow-right"></i> icon-long-arrow-right</li>
+												<li><i class="icon-linux"></i> icon-linux</li>
+												<li><i class="icon-trello"></i> icon-trello</li>
+												<li><i class="icon-sun"></i> icon-sun</li>
+												<li><i class="icon-vk"></i> icon-vk</li>
+											</ul>
+										</div>
+										<div class="span3">
+											<ul class="unstyled">
+												<li><i class="icon-expand"></i> icon-expand</li>
+												<li><i class="icon-usd"></i> icon-usd</li>
+												<li><i class="icon-jpy"></i> icon-jpy</li>
+												<li><i class="icon-krw"></i> icon-krw</li>
+												<li><i class="icon-file"></i> icon-file</li>
+												<li><i class="icon-sort-by-attributes"></i> icon-sort-by-attributes</li>
+												<li><i class="icon-thumbs-up"></i> icon-thumbs-up</li>
+												<li><i class="icon-xing"></i> icon-xing</li>
+												<li><i class="icon-stackexchange"></i> icon-stackexchange</li>
+												<li><i class="icon-bitbucket"></i> icon-bitbucket</li>
+												<li><i class="icon-long-arrow-down"></i> icon-long-arrow-down</li>
+												<li><i class="icon-apple"></i> icon-apple</li>
+												<li><i class="icon-dribble"></i> icon-dribble</li>
+												<li><i class="icon-female"></i> icon-female</li>
+												<li><i class="icon-moon"></i> icon-moon</li>
+												<li><i class="icon-weibo"></i> icon-weibo</li>
+											</ul>
+										</div>
+									</div>
+							</div>
+    </div>
+				<!-- END PAGE HEADER-->
+</div>
+   
+
+
+   
+

@@ -1,0 +1,101 @@
+﻿@{
+    Layout = null;
+    CJCMS.Application.CategoryManager ca = new CJCMS.Application.CategoryManager();
+    IList<CJCMS.Contracts.DTO.Category.CategoryInfo> clist = ca.FetchByPCategoryIdUI("e3765cf6-11a8-4d47-b5c9-bc9f2cf7c4ec");
+}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="昂飞网络信息科技---成功来源于您的信赖" />
+    <title>昂飞网络信息科技---成功来源于您的信赖</title>
+    <link href="@Url.Content("/css/bootstrap.min.css")" rel="stylesheet" />
+ <link href="@Url.Content("/css/bootstrap-responsive.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("/css/haijun.css")" rel="stylesheet" />
+</head>
+<body>
+
+    <!--top start-->
+    <div class="top navbar-fixed-top">
+        <div class="layout">
+            <div class="grid">
+                <div class="logo"><a href="/" title="昂飞网络信息科技---成功来源于您的信赖"><h3>Run For IT</h3></a></div>
+                <div class="menu">
+                    <ul class="menuItem">
+                         @foreach (CJCMS.Contracts.DTO.Category.CategoryInfo c in clist)
+                        {
+                        <li class="active"><a href="@c.ExInfo">@c.CategoryName</a></li>
+                         }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--top end-->
+    <!--header start-->
+        @RenderBody()
+    <!--content end-->
+    <div class="footer">
+        <div class="layout">
+            <div class="grid">
+                <div class="pull-left phone">
+                    <h4>联系方式</h4>
+                    <p>邮箱：869722304@qq.com</p>
+                    <p>手机：13701869287</p>
+                    <p>QQ:869722304</p>
+                </div>
+                <div class="pull-left phone">
+                    <h4>网站导航</h4>
+                     @foreach (CJCMS.Contracts.DTO.Category.CategoryInfo c in clist)
+                     {
+                         <p><a href="@c.ExInfo">@c.CategoryName</a></p>
+                     }
+                </div>
+                <div class="pull-left share">
+                    <!-- Baidu Button BEGIN -->
+                    <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+                        <a class="bds_qzone"></a>
+                        <a class="bds_tsina"></a>
+                        <a class="bds_tqq"></a>
+                        <a class="bds_renren"></a>
+                        <span class="bds_more"></span>
+                        <a class="shareCount"></a>
+                    </div>
+                    <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=0"></script>
+                    <script type="text/javascript" id="bdshell_js"></script>
+                    <script type="text/javascript">
+                        document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date() / 3600000)
+                    </script>
+                    <!-- Baidu Button END -->
+                    <div class="clearfix"></div>
+                    <p>昂飞网络信息科技---成功来源于您的信赖！</p>
+                    <p>版权所有：@@2012 昂飞网络信息科技</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--footer end-->
+    <script src="@Url.Content("/js/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("/js/jquery.bxSlider.min.js")"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery('#slider').bxSlider({
+                auto: true,
+                pager: true
+            });
+            jQuery('#slider2').bxSlider({
+                mode: 'fade',
+                captions: true,
+                auto: true,
+                controls: false
+            });
+        });
+
+        if (jQuery.browser.msie) {
+            jQuery("#bdshare_s").append("<div  class=\"alert\"><strong>Warning!</strong> 您使用的是ie浏览器，由于ie浏览器的缺陷和落后，本站不支持ie浏览器，请使用其他主流浏览器.</div>");
+        }
+    </script>
+</body>
+</html>

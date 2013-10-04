@@ -1,0 +1,79 @@
+﻿
+
+@{
+    Layout = null;
+    CJCMS.Application.CategoryManager ca = new CJCMS.Application.CategoryManager();
+    IList<CJCMS.Contracts.DTO.Category.CategoryInfo> clist = ca.FetchByPCategoryId("f87d5527-a0ae-4c70-b678-5d0a2c6fe297");
+}
+<div class="page-sidebar nav-collapse collapse">
+
+			<!-- BEGIN SIDEBAR MENU -->        
+
+			<ul class="page-sidebar-menu">
+
+				<li>
+
+					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+
+					<div class="sidebar-toggler hidden-phone"></div>
+
+					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+
+				</li>
+
+				<li>
+
+					<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+
+					<form class="sidebar-search">
+
+						<div class="input-box">
+
+							<a href="javascript:;" class="remove"></a>
+
+							<input type="text" placeholder="搜索..." />
+
+							<input type="button" class="submit" value=" " />
+
+						</div>
+
+					</form>
+
+					<!-- END RESPONSIVE QUICK SEARCH FORM -->
+
+				</li>
+
+				<li class="start ">
+
+					<a href="/Admin/index">
+
+					<i class="icon-home"></i> 
+
+					<span class="title">操作中心面板</span>
+
+					</a>
+
+				</li>
+                @foreach (var item in clist)
+                {
+				<li class="">
+
+					<a extinfo="@item.Id" href="javascript:;">
+
+					<i class="@item.IconName"></i> 
+
+					<span class="title">@item.CategoryName</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					
+
+				</li>
+                }
+			</ul>
+
+			<!-- END SIDEBAR MENU -->
+
+		</div>

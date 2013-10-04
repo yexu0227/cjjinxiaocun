@@ -1,0 +1,653 @@
+﻿@{
+    ViewBag.Title = "UpdateProduct";
+    CJCMS.Application.CategoryManager ca = new CJCMS.Application.CategoryManager();
+    IList<CJCMS.Contracts.DTO.Category.CategoryInfo> clist = ca.FetchByPCategoryId("7ab8b7d2-747c-4b7b-a7ce-e7d9d579dea2");
+
+    CJCMS.Contracts.DTO.Product.ProductDTO p = ViewBag.Product;
+    IList<CJCMS.Contracts.DTO.Product.ProductAttrDTO> pattrlist = ViewBag.ProductAttr;
+}
+
+<div class="container-fluid">
+
+				<!-- BEGIN PAGE HEADER-->   
+
+				<div class="row-fluid">
+
+					<div class="span12">
+						<h3 class="page-title">
+
+							修改产品
+
+							 <small></small>
+
+						</h3>
+
+						<ul class="breadcrumb">
+
+							<li>
+
+								<i class="icon-home"></i>
+
+								<a href="/Admin/Index">操作中心面板</a> 
+
+								<span class="icon-angle-right"></span>
+
+							</li>
+
+							<li>
+
+								<a href="#">产品管理</a>
+
+								<span class="icon-angle-right"></span>
+
+							</li>
+
+							<li><a href="#">修改产品</a></li>
+
+						</ul>
+
+					</div>
+
+				</div>
+
+				<!-- END PAGE HEADER-->
+
+				<!-- BEGIN PAGE CONTENT-->
+				<div class="row-fluid">
+
+					<div class="span12">
+
+						<!-- BEGIN VALIDATION STATES-->
+
+                        <div class="portlet box blue tabbable">
+
+							<div class="portlet-title">
+
+								<div class="caption">
+
+									<i class="icon-reorder"></i>
+
+									<span class="hidden-480">修改产品</span>
+
+								</div>
+
+							</div>
+
+							<div class="portlet-body form">
+
+								<div class="tabbable portlet-tabs">
+
+									<ul class="nav nav-tabs">
+
+										<li><a href="#portlet_tab2" data-toggle="tab">产品属性</a></li>
+
+										<li class="active"><a href="#portlet_tab1" data-toggle="tab">产品信息</a></li>
+
+									</ul>
+
+									<div class="tab-content">
+
+										<div class="tab-pane active" id="portlet_tab1">
+
+											<!-- BEGIN FORM-->
+                                             <form id = "form_sample_1" class = "form-horizontal" novalidate = "novalidate" >
+                                    
+                                    <div class="alert alert-error hide">
+
+										<button class="close" data-dismiss="alert"></button>
+										@*@Html.ValidationSummary(true, "登录不成功。请更正错误并重试。")*@
+                                        登录不成功。请更正错误并重试。
+									</div>
+
+									<div class="alert alert-success hide">
+
+										<button class="close" data-dismiss="alert"></button>
+
+										Your form validation is successful!
+
+									</div>
+
+                                    <div class="control-group">
+                                         <input type="hidden" value="@p.Id" id="ppid" name="ppid" data-required="1" class="span6 m-wrap">
+										<label class="control-label">是否上线</label>
+
+										<div class="controls">
+
+											<div class="basic-toggle-button">
+                                              
+											   <input id="ponline" name="ponline" type="checkbox" class="toggle" />
+                                                   
+											</div>
+
+										</div>
+
+									</div>
+
+                                    <div class="control-group">
+
+										<label class="control-label">产品编号<span class="required">*</span></label>
+
+										<div class="controls">
+
+											<input type="text" value="@p.ProductNo" name="pcode" data-required="1" class="span6 m-wrap">
+
+										</div>
+
+									</div>
+
+									<div class="control-group">
+
+										<label class="control-label">产品标题<span class="required">*</span></label>
+
+										<div class="controls">
+
+											<input type="text" value="@p.Name" name="ptitle" data-required="1" class="span6 m-wrap">
+
+										</div>
+
+									</div>
+
+                                    <div class="control-group">
+
+										<label class="control-label">产品属于分类<span class="required">*</span></label>
+
+										<div class="controls">
+
+											<select class="span6 m-wrap" name="pcategory">
+
+												<option value="">请选择</option>
+                                                @foreach (CJCMS.Contracts.DTO.Category.CategoryInfo c in clist)
+                                                {
+                                                    if(p.CategoryId==c.Id){
+												<option selected="selected" value="@c.Id">@c.CategoryName</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@c.Id">@c.CategoryName</option>
+                                                    }
+                                                }
+											</select>
+
+										</div>
+
+									</div>
+
+                                    <div class="control-group">
+
+										<label class="control-label">价格<span class="required">*</span></label>
+
+										<div class="controls">
+
+											<input class="span2 m-wrap" value="@p.Price" name="pprice" id="pprice" type="text">
+
+											<span class="help-inline">元</span>
+
+										</div>
+
+									</div>
+
+									<div class="control-group">
+
+										<label class="control-label">图片<span class="required">*</span></label>
+
+										<div class="controls">
+                                            <input id="pimage" type="file" name="pimage1" />
+                                            <input value="@p.ImgUrl" id="pimage1" type="text" name="pimage" style="display:none" />
+										</div>
+
+									</div>
+
+									<div class="control-group">
+
+										<label class="control-label">产品内容<span class="required">*</span></label>
+
+										<div class="controls">
+                                            <textarea id="content1" name="content1" cols="100" rows="8"style="width:700px;height:400px;visibility:hidden;">
+                                                @p.ProductContent
+                                            </textarea>
+
+
+										</div>
+
+									</div>
+                                        
+									<div class="form-actions">
+
+										<button type="submit" class="btn blue">保存</button>
+
+										<button type="button" class="btn">取消</button>
+
+									</div>
+
+                                    </form>
+
+											<!-- END FORM-->  
+
+										</div>
+
+										<div class="tab-pane " id="portlet_tab2">
+                                            <div class="row-fluid">
+                                            <div class="span6">
+									        <form id = "form_sample_2" class = "form-horizontal" novalidate = "novalidate">
+
+									<div class="alert alert-error hide">
+
+										<button class="close" data-dismiss="alert"></button>
+										@*@Html.ValidationSummary(true, "登录不成功。请更正错误并重试。")*@
+                                        登录不成功。请更正错误并重试。检查商品是否存在。
+									</div>
+
+									<div class="alert alert-success hide">
+
+										<button class="close" data-dismiss="alert"></button>
+
+										信息已提交系统处理
+
+									</div>
+
+                                    <div class="control-group">
+
+										<label class="control-label">颜色<span class="required">*</span></label>
+
+										<div class="controls">
+                                            <input type="hidden" value="@p.Id" id="pid" name="pid" data-required="1" class="span6 m-wrap">
+											<input type="text" name="pacolor" data-required="1" class="span6 m-wrap">
+
+										</div>
+
+									</div>
+
+									<div class="control-group">
+
+										<label class="control-label">尺寸<span class="required">*</span></label>
+
+										<div class="controls">
+
+											<input type="text" name="pasize" data-required="1" class="span6 m-wrap">
+
+										</div>
+
+									</div>
+
+                                    <div class="control-group">
+
+										<label class="control-label">价格<span class="required">*</span></label>
+
+										<div class="controls">
+
+											<input class="span3 m-wrap" name="paprice" id="paprice" type="text">
+
+											<span class="help-inline">元</span>
+
+										</div>
+
+									</div>
+
+                                    <div class="control-group">
+
+										<label class="control-label">数量<span class="required">*</span></label>
+
+										<div class="controls">
+
+											<input class="span3 m-wrap" name="pacount" id="pacount" type="text">
+
+											<span class="help-inline"></span>
+
+										</div>
+
+									</div>
+
+									<div class="control-group">
+
+										<label class="control-label">图片<span class="required">*</span></label>
+
+										<div class="controls">
+                                            <input id="paimage" type="file" name="paimage1" />
+                                            <input id="paimage1" type="text" name="paimage" style="display:none" />
+										</div>
+
+									</div>
+
+									<div class="form-actions" style="border-top:0px;background-color:white ">
+
+										<button type="submit" class="btn blue">保存</button>
+
+										<button type="button" class="btn">取消</button>
+
+									</div>
+
+								</form>	
+                                            </div>
+                                            <div class="span6">
+
+						<!-- BEGIN SAMPLE TABLE PORTLET-->
+
+						                  <div class="portlet box blue">
+
+							<div class="portlet-title">
+
+								<div class="caption"><i class="icon-cogs"></i>产品属性列表</div>
+
+							</div>
+
+							<div class="portlet-body">
+
+								<table class="table table-hover">
+
+									<thead>
+                                        <tr>
+											<th>#</th>
+											<th>颜色</th>
+											<th>尺寸</th>
+											<th class="hidden-480">数量</th>
+                                            <th class="hidden-480">价格</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+
+									<tbody>
+                                        @{ int i=0;}
+                                        @foreach (CJCMS.Contracts.DTO.Product.ProductAttrDTO pattr in pattrlist)
+                                        {
+                                            i++;
+                                            <tr id="@pattr.Id"><td>@i</td><td>@pattr.Attr1</td><td>@pattr.Attr2</td><td>@pattr.Count</td><td class="hidden-480">¥@pattr.Price</td><td><span onclick="DeleteAttr('@pattr.Id')" class="label label-success">删除</span></td></tr>
+                                        }
+									</tbody>
+
+								</table>
+
+							</div>
+
+						</div>
+
+						<!-- END SAMPLE TABLE PORTLET-->
+
+					</div>
+                                            </div>
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<!-- END VALIDATION STATES-->
+
+					</div>
+
+				</div>
+
+				<!-- END PAGE CONTENT-->         
+
+			</div>
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+
+	<script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/jquery.validate.min.js")"></script>
+
+	<script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/additional-methods.min.js")"></script>
+
+	<script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/select2.min.js")"></script>
+
+	<script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/chosen.jquery.min.js")"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/ForAdmin/css/uploadify.css")" type="text/css">
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/ForAdmin/css/bootstrap-toggle-buttons.css")" type="text/css">
+
+    <script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/jquery.uploadify-3.1.min.js")"></script>
+
+     <script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/jquery.form.js")"></script>
+
+     <script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/jquery.inputmask.bundle.min.js")"></script>
+    
+     <script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/jquery.toggle.buttons.js")"></script>
+
+     <script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/ajaxformtool.js")"></script>
+
+	<script>
+	    //return false;
+	    $("#pimage").uploadify({
+	        'swf': '@Url.Content("~/Content/ForAdmin/uploadify.swf")',
+	        'uploader': '/Admin/UploadImageRespUrl',
+	        'onUploadSuccess': function (file, data, response) {
+	            $("#pimage1").val(data);
+	        }
+	    });
+	    $("#paimage").uploadify({
+	        'swf': '@Url.Content("~/Content/ForAdmin/uploadify.swf")',
+            'uploader': '/Admin/UploadImageRespUrl',
+            'onUploadSuccess': function (file, data, response) {
+                $("#paimage1").val(data);
+            }
+        });
+	   // KindEditor.ready(function (K) {
+	     //   alert('');
+	    var editor1 = KindEditor.create('#content1', {
+	            cssPath: '../plugins/code/prettify.css',
+	            uploadJson: '/Admin/UploadImgKindEditor',
+	            fileManagerJson: '/Admin/UploadFileKindEditor',
+	            allowFileManager: false,
+	            //afterCreate: function () {
+	            //    //var self = this;
+	            //    //KindEditor.ctrl(document, 13, function () {
+	            //    //    self.sync();
+	            //    //    K('form[name=example]')[0].submit();
+	            //    //});
+	            //    //KindEditor.ctrl(self.edit.doc, 13, function () {
+	            //    //    self.sync();
+	            //    //    K('form[name=example]')[0].submit();
+	            //    //});
+	            //}
+	        });
+	        prettyPrint();
+	  // });
+	</script>
+	<!-- END PAGE LEVEL PLUGINS -->
+
+	<!-- BEGIN PAGE LEVEL STYLES -->
+	<!-- END PAGE LEVEL STYLES -->    
+
+	<script>
+	    // for more info visit the official plugin documentation: 
+	    // http://docs.jquery.com/Plugins/Validation
+
+	    var form1 = $('#form_sample_1');
+	    var error1 = $('.alert-error', form1);
+	    var success1 = $('.alert-success', form1);
+
+	    form1.validate({
+	        errorElement: 'span', //default input error message container
+	        errorClass: 'help-inline', // default input error message class
+	        focusInvalid: false, // do not focus the last invalid input
+	        ignore: "",
+	        rules: {
+	            title: {
+	                required: true
+	            },
+	            pimage: {
+	                required: true
+	            },
+                content1: {
+	                required: true
+	            },
+	            category: {
+	                required: true
+	            }
+	        },
+
+	        invalidHandler: function (event, validator) { //display error alert on form submit              
+	            success1.hide();
+	            error1.show();
+	            App.scrollTo(error1, -200);
+	        },
+
+	        highlight: function (element) { // hightlight error inputs
+	            $(element)
+                    .closest('.help-inline').removeClass('ok'); // display OK icon
+	            $(element)
+                    .closest('.control-group').removeClass('success').addClass('error'); // set error class to the control group
+	        },
+
+	        unhighlight: function (element) { // revert the change dony by hightlight
+	            $(element)
+                    .closest('.control-group').removeClass('error'); // set error class to the control group
+	        },
+
+	        success: function (label) {
+	            label
+                    .addClass('valid').addClass('help-inline ok') // mark the current input as valid and display OK icon
+                .closest('.control-group').removeClass('error').addClass('success'); // set success class to the control group
+	        },
+
+	        submitHandler: function (form) {
+	            success1.show();
+	            error1.hide();
+	            $.ajax({
+	                type: "POST",
+	                url: '/Admin/UpdateProduct',
+	                data: getFormJson(form),
+	                error: function (request) {
+	                    //alert(request);
+	                },
+	                success: function (data) {
+                        $("#pid").val(data.Id);
+	                    var unique_id = $.gritter.add({
+	                        // (string | mandatory) the heading of the notification
+	                        title: '提示信息',
+	                        // (string | mandatory) the text inside the notification
+	                        text: data.Msg,
+	                        // (string | optional) the image to display on the left
+	                        //image: './assets/img/avatar1.jpg',
+	                        // (bool | optional) if you want it to fade out on its own or just sit there
+	                        //sticky: true,
+	                        // (int | optional) the time you want it to be alive for before fading out
+	                        //time: '',
+	                        // (string | optional) the class name you want to apply to that specific message
+	                        //class_name: 'my-sticky-class'
+	                    });
+	                    return false;
+	                }
+	            });
+	            return;
+	        }
+	    });
+	    var form2 = $('#form_sample_2');
+	    var error2 = $('.alert-error', form2);
+	    var success2 = $('.alert-success', form2);
+
+	    form2.validate({
+	        errorElement: 'span', //default input error message container
+	        errorClass: 'help-inline', // default input error message class
+	        focusInvalid: false, // do not focus the last invalid input
+	        ignore: "",
+	        rules: {
+	            pacolor: {
+	                required: true
+	            },
+	            paimage: {
+	                required: true
+	            },
+	            pasize: {
+	                required: true
+	            },
+	            pacount: {
+	                required: true
+	            },
+	            paprice: {
+	                required: true
+	            },
+	            pid: {
+	                required: true
+	            }
+	        },
+
+	        invalidHandler: function (event, validator) { //display error alert on form submit              
+	            success2.hide();
+	            error2.show();
+	            App.scrollTo(error2, -200);
+	        },
+
+	        highlight: function (element) { // hightlight error inputs
+	            $(element)
+                    .closest('.help-inline').removeClass('ok'); // display OK icon
+	            $(element)
+                    .closest('.control-group').removeClass('success').addClass('error'); // set error class to the control group
+	        },
+
+	        unhighlight: function (element) { // revert the change dony by hightlight
+	            $(element)
+                    .closest('.control-group').removeClass('error'); // set error class to the control group
+	        },
+
+	        success: function (label) {
+	            label
+                    .addClass('valid').addClass('help-inline ok') // mark the current input as valid and display OK icon
+                .closest('.control-group').removeClass('error').addClass('success'); // set success class to the control group
+	        },
+
+	        submitHandler: function (form) {
+	            success2.show();
+	            error2.hide();
+	            var formdata = getFormJson(form);
+	            //log(data);
+	            $.ajax({
+	                type: "POST",
+	                url: '/Admin/AddProductAttr',
+	                data: formdata,
+	                error: function (request) {
+	                    //alert(request);
+	                },
+	                success: function (data) {
+	                    var unique_id = $.gritter.add({
+	                        // (string | mandatory) the heading of the notification
+	                        title: '提示信息',
+	                        // (string | mandatory) the text inside the notification
+	                        text: data.Msg,
+	                        // (string | optional) the image to display on the left
+	                        //image: './assets/img/avatar1.jpg',
+	                        // (bool | optional) if you want it to fade out on its own or just sit there
+	                        //sticky: true,
+	                        // (int | optional) the time you want it to be alive for before fading out
+	                        //time: '',
+	                        // (string | optional) the class name you want to apply to that specific message
+	                        //class_name: 'my-sticky-class'
+	                    });
+	                    var trs= $(".portlet-body .table tbody tr");
+	                    $(".portlet-body .table tbody").append("<tr id=\"" + data.Id +"\"><td>" + (trs.length + 1) + "</td><td>" + formdata.pacolor + "</td><td>" + formdata.pasize + "</td> <td>" + formdata.pacount + "</td><td class=\"hidden-480\">¥" + formdata.paprice + "</td><td><span onclick=\"DeleteAttr('" + formdata.Id + "')\" class=\"label label-success\">删除</span></td></tr>");
+	                    return false;
+	                }
+	            });
+	            //return;
+	        }
+	    });
+	    $("#mask_number").inputmask({ "mask": "9", "repeat": 5, "greedy": false });
+	    $('.basic-toggle-button').toggleButtons();
+
+	    function DeleteAttr(id)
+	    {
+	        $.ajax({
+	            type: "POST",
+	            url: '/Admin/DeleteProductAttr',
+	            data: 'id='+id,
+	            error: function (request) {
+	                //alert(request);
+	            },
+	            success: function (data) {
+	                var unique_id = $.gritter.add({
+	                    // (string | mandatory) the heading of the notification
+	                    title: '提示信息',
+	                    // (string | mandatory) the text inside the notification
+	                    text: data.Msg
+	                });
+	                $(".portlet-body .table tbody tr#" + data.Id).remove();
+	                return false;
+	            }
+	        });
+	    }
+	</script>
+
+	<!-- END JAVASCRIPTS -->   
+<!-- END BODY -->

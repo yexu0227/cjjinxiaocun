@@ -1,0 +1,889 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{593C4A51-1756-4B54-871A-3222F8D3E5D4}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CJCMS.Web.Company</RootNamespace>
+    <AssemblyName>CJCMS.Web.Company</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CJCMS.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\cjlib\CJCMS.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.3.0.20105.1\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.1.0.20105.408\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CJAuthorizeAttribute.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\WebHelpController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\ForAdmin\css\about-us.css" />
+    <Content Include="Content\ForAdmin\css\animate.css" />
+    <Content Include="Content\ForAdmin\css\blog.css" />
+    <Content Include="Content\ForAdmin\css\blue.css" />
+    <Content Include="Content\ForAdmin\css\bootstrap-fileupload.css" />
+    <Content Include="Content\ForAdmin\css\bootstrap-modal.css" />
+    <Content Include="Content\ForAdmin\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\ForAdmin\css\bootstrap-responsive1.min.css" />
+    <Content Include="Content\ForAdmin\css\bootstrap-tag.css" />
+    <Content Include="Content\ForAdmin\css\bootstrap-toggle-buttons.css" />
+    <Content Include="Content\ForAdmin\css\bootstrap-tree.css" />
+    <Content Include="Content\ForAdmin\css\bootstrap-wysihtml5.css" />
+    <Content Include="Content\ForAdmin\css\bootstrap.min.css" />
+    <Content Include="Content\ForAdmin\css\brown.css" />
+    <Content Include="Content\ForAdmin\css\chosen.css" />
+    <Content Include="Content\ForAdmin\css\clockface.css" />
+    <Content Include="Content\ForAdmin\css\colorpicker.css" />
+    <Content Include="Content\ForAdmin\css\coming-soon.css" />
+    <Content Include="Content\ForAdmin\css\datepicker.css" />
+    <Content Include="Content\ForAdmin\css\daterangepicker.css" />
+    <Content Include="Content\ForAdmin\css\datetimepicker.css" />
+    <Content Include="Content\ForAdmin\css\default.css" />
+    <Content Include="Content\ForAdmin\css\dropzone.css" />
+    <Content Include="Content\ForAdmin\css\DT_bootstrap.css" />
+    <Content Include="Content\ForAdmin\css\email.css" />
+    <Content Include="Content\ForAdmin\css\error.css" />
+    <Content Include="Content\ForAdmin\css\font-awesome.css" />
+    <Content Include="Content\ForAdmin\css\font-awesome.min.css" />
+    <Content Include="Content\ForAdmin\css\fullcalendar.css" />
+    <Content Include="Content\ForAdmin\css\glyphicons.css" />
+    <Content Include="Content\ForAdmin\css\grey.css" />
+    <Content Include="Content\ForAdmin\css\halflings.css" />
+    <Content Include="Content\ForAdmin\css\inbox.css" />
+    <Content Include="Content\ForAdmin\css\invoice.css" />
+    <Content Include="Content\ForAdmin\css\jquery-ui-1.10.1.custom.min.css" />
+    <Content Include="Content\ForAdmin\css\jquery.easy-pie-chart.css" />
+    <Content Include="Content\ForAdmin\css\jquery.fancybox.css" />
+    <Content Include="Content\ForAdmin\css\jquery.fileupload-ui.css" />
+    <Content Include="Content\ForAdmin\css\jquery.gritter.css" />
+    <Content Include="Content\ForAdmin\css\jquery.nestable.css" />
+    <Content Include="Content\ForAdmin\css\jquery.tagsinput.css" />
+    <Content Include="Content\ForAdmin\css\jquery.ui.slider.css" />
+    <Content Include="Content\ForAdmin\css\jqvmap.css" />
+    <Content Include="Content\ForAdmin\css\light.css" />
+    <Content Include="Content\ForAdmin\css\lock.css" />
+    <Content Include="Content\ForAdmin\css\login-soft.css" />
+    <Content Include="Content\ForAdmin\css\login.css" />
+    <Content Include="Content\ForAdmin\css\multi-select-metro.css" />
+    <Content Include="Content\ForAdmin\css\news.css" />
+    <Content Include="Content\ForAdmin\css\pricing-tables.css" />
+    <Content Include="Content\ForAdmin\css\print.css" />
+    <Content Include="Content\ForAdmin\css\profile.css" />
+    <Content Include="Content\ForAdmin\css\promo.css" />
+    <Content Include="Content\ForAdmin\css\purple.css" />
+    <Content Include="Content\ForAdmin\css\search.css" />
+    <Content Include="Content\ForAdmin\css\select2_metro.css" />
+    <Content Include="Content\ForAdmin\css\style-metro.css" />
+    <Content Include="Content\ForAdmin\css\style-non-responsive.css" />
+    <Content Include="Content\ForAdmin\css\style-responsive.css" />
+    <Content Include="Content\ForAdmin\css\style.css" />
+    <Content Include="Content\ForAdmin\css\timeline.css" />
+    <Content Include="Content\ForAdmin\css\timepicker.css" />
+    <Content Include="Content\ForAdmin\css\uniform.default.css" />
+    <Content Include="Content\ForAdmin\css\uploadify.css" />
+    <Content Include="Content\ForAdmin\image\1.jpg" />
+    <Content Include="Content\ForAdmin\image\10.jpg" />
+    <Content Include="Content\ForAdmin\image\11.jpg" />
+    <Content Include="Content\ForAdmin\image\2.jpg" />
+    <Content Include="Content\ForAdmin\image\3.jpg" />
+    <Content Include="Content\ForAdmin\image\4.jpg" />
+    <Content Include="Content\ForAdmin\image\5.jpg" />
+    <Content Include="Content\ForAdmin\image\6.jpg" />
+    <Content Include="Content\ForAdmin\image\7.jpg" />
+    <Content Include="Content\ForAdmin\image\8.jpg" />
+    <Content Include="Content\ForAdmin\image\9.jpg" />
+    <Content Include="Content\ForAdmin\image\ajax-loading.gif" />
+    <Content Include="Content\ForAdmin\image\alpha.png" />
+    <Content Include="Content\ForAdmin\image\amazon.png" />
+    <Content Include="Content\ForAdmin\image\animated-overlay.gif" />
+    <Content Include="Content\ForAdmin\image\avatar.png" />
+    <Content Include="Content\ForAdmin\image\avatar1.jpg" />
+    <Content Include="Content\ForAdmin\image\avatar1_small.jpg" />
+    <Content Include="Content\ForAdmin\image\avatar2.jpg" />
+    <Content Include="Content\ForAdmin\image\avatar3.jpg" />
+    <Content Include="Content\ForAdmin\image\behance.png" />
+    <Content Include="Content\ForAdmin\image\bg-input-focus.png" />
+    <Content Include="Content\ForAdmin\image\bg-input.png" />
+    <Content Include="Content\ForAdmin\image\bg-opacity.png" />
+    <Content Include="Content\ForAdmin\image\bg-white-lock.png" />
+    <Content Include="Content\ForAdmin\image\bg\1.jpg" />
+    <Content Include="Content\ForAdmin\image\bg\2.jpg" />
+    <Content Include="Content\ForAdmin\image\bg\3.jpg" />
+    <Content Include="Content\ForAdmin\image\bg\4.jpg" />
+    <Content Include="Content\ForAdmin\image\blank.gif" />
+    <Content Include="Content\ForAdmin\image\blogger.png" />
+    <Content Include="Content\ForAdmin\image\bstree-halflings.png" />
+    <Content Include="Content\ForAdmin\image\chosen-sprite.png" />
+    <Content Include="Content\ForAdmin\image\datatable-row-openclose.png" />
+    <Content Include="Content\ForAdmin\image\deviantart.png" />
+    <Content Include="Content\ForAdmin\image\dribbble.png" />
+    <Content Include="Content\ForAdmin\image\dropbox.png" />
+    <Content Include="Content\ForAdmin\image\earth.jpg" />
+    <Content Include="Content\ForAdmin\image\evernote.png" />
+    <Content Include="Content\ForAdmin\image\facebook.png" />
+    <Content Include="Content\ForAdmin\image\fancybox_loading.gif" />
+    <Content Include="Content\ForAdmin\image\fancybox_overlay.png" />
+    <Content Include="Content\ForAdmin\image\fancybox_sprite.png" />
+    <Content Include="Content\ForAdmin\image\favicon.ico" />
+    <Content Include="Content\ForAdmin\image\forrst.png" />
+    <Content Include="Content\ForAdmin\image\github.png" />
+    <Content Include="Content\ForAdmin\image\glyphicons-halflings-white.png" />
+    <Content Include="Content\ForAdmin\image\glyphicons-halflings.png" />
+    <Content Include="Content\ForAdmin\image\glyphicons-white.png" />
+    <Content Include="Content\ForAdmin\image\glyphicons.png" />
+    <Content Include="Content\ForAdmin\image\glyphicons_halflings-white.png" />
+    <Content Include="Content\ForAdmin\image\glyphicons_halflings.png" />
+    <Content Include="Content\ForAdmin\image\googleplus.png" />
+    <Content Include="Content\ForAdmin\image\gritter-light.png" />
+    <Content Include="Content\ForAdmin\image\gritter.png" />
+    <Content Include="Content\ForAdmin\image\hor-menu-search-close-white.png" />
+    <Content Include="Content\ForAdmin\image\hor-menu-search-close.png" />
+    <Content Include="Content\ForAdmin\image\hor-menu-search.png" />
+    <Content Include="Content\ForAdmin\image\hue.png" />
+    <Content Include="Content\ForAdmin\image\icon-color-close.png" />
+    <Content Include="Content\ForAdmin\image\icon-color.png" />
+    <Content Include="Content\ForAdmin\image\icon-img-down.png" />
+    <Content Include="Content\ForAdmin\image\icon-img-up.png" />
+    <Content Include="Content\ForAdmin\image\ie-spacer.gif" />
+    <Content Include="Content\ForAdmin\image\image1.jpg" />
+    <Content Include="Content\ForAdmin\image\image2.jpg" />
+    <Content Include="Content\ForAdmin\image\image3.jpg" />
+    <Content Include="Content\ForAdmin\image\image4.jpg" />
+    <Content Include="Content\ForAdmin\image\image5.jpg" />
+    <Content Include="Content\ForAdmin\image\img1.png" />
+    <Content Include="Content\ForAdmin\image\img1_2.png" />
+    <Content Include="Content\ForAdmin\image\img2.png" />
+    <Content Include="Content\ForAdmin\image\img3.png" />
+    <Content Include="Content\ForAdmin\image\img4.png" />
+    <Content Include="Content\ForAdmin\image\inbox-nav-arrow-blue.png" />
+    <Content Include="Content\ForAdmin\image\instagram.png" />
+    <Content Include="Content\ForAdmin\image\iphone.png" />
+    <Content Include="Content\ForAdmin\image\item_img.jpg" />
+    <Content Include="Content\ForAdmin\image\item_img1.jpg" />
+    <Content Include="Content\ForAdmin\image\jolicloud.png" />
+    <Content Include="Content\ForAdmin\image\KwPYo.jpg" />
+    <Content Include="Content\ForAdmin\image\last-fm.png" />
+    <Content Include="Content\ForAdmin\image\linkedin.png" />
+    <Content Include="Content\ForAdmin\image\loading.gif" />
+    <Content Include="Content\ForAdmin\image\logo-big.png" />
+    <Content Include="Content\ForAdmin\image\logo.png" />
+    <Content Include="Content\ForAdmin\image\logo_azteca.jpg" />
+    <Content Include="Content\ForAdmin\image\logo_conquer.jpg" />
+    <Content Include="Content\ForAdmin\image\logo_metronic.jpg" />
+    <Content Include="Content\ForAdmin\image\menu-toggler.png" />
+    <Content Include="Content\ForAdmin\image\overlay-icon.png" />
+    <Content Include="Content\ForAdmin\image\photo1.jpg" />
+    <Content Include="Content\ForAdmin\image\photo2.jpg" />
+    <Content Include="Content\ForAdmin\image\photo3.jpg" />
+    <Content Include="Content\ForAdmin\image\photo4.jpg" />
+    <Content Include="Content\ForAdmin\image\photo5.jpg" />
+    <Content Include="Content\ForAdmin\image\photo6.jpg" />
+    <Content Include="Content\ForAdmin\image\picasa.png" />
+    <Content Include="Content\ForAdmin\image\pintrest.png" />
+    <Content Include="Content\ForAdmin\image\portlet-collapse-icon-white.png" />
+    <Content Include="Content\ForAdmin\image\portlet-collapse-icon.png" />
+    <Content Include="Content\ForAdmin\image\portlet-config-icon-white.png" />
+    <Content Include="Content\ForAdmin\image\portlet-config-icon.png" />
+    <Content Include="Content\ForAdmin\image\portlet-expand-icon-white.png" />
+    <Content Include="Content\ForAdmin\image\portlet-expand-icon.png" />
+    <Content Include="Content\ForAdmin\image\portlet-reload-icon-white.png" />
+    <Content Include="Content\ForAdmin\image\portlet-reload-icon.png" />
+    <Content Include="Content\ForAdmin\image\portlet-remove-icon-white.png" />
+    <Content Include="Content\ForAdmin\image\portlet-remove-icon.png" />
+    <Content Include="Content\ForAdmin\image\preview_02.png" />
+    <Content Include="Content\ForAdmin\image\preview_03.png" />
+    <Content Include="Content\ForAdmin\image\preview_04.png" />
+    <Content Include="Content\ForAdmin\image\preview_05.png" />
+    <Content Include="Content\ForAdmin\image\preview_06.png" />
+    <Content Include="Content\ForAdmin\image\preview_07.png" />
+    <Content Include="Content\ForAdmin\image\preview_08.png" />
+    <Content Include="Content\ForAdmin\image\preview_09.png" />
+    <Content Include="Content\ForAdmin\image\preview_10.png" />
+    <Content Include="Content\ForAdmin\image\preview_11.png" />
+    <Content Include="Content\ForAdmin\image\preview_12.png" />
+    <Content Include="Content\ForAdmin\image\preview_13.png" />
+    <Content Include="Content\ForAdmin\image\preview_14.png" />
+    <Content Include="Content\ForAdmin\image\preview_15.png" />
+    <Content Include="Content\ForAdmin\image\preview_16.png" />
+    <Content Include="Content\ForAdmin\image\preview_17.png" />
+    <Content Include="Content\ForAdmin\image\profile-img.png" />
+    <Content Include="Content\ForAdmin\image\profile.jpg" />
+    <Content Include="Content\ForAdmin\image\progressbar.gif" />
+    <Content Include="Content\ForAdmin\image\remove-icon-small.png" />
+    <Content Include="Content\ForAdmin\image\rss.png" />
+    <Content Include="Content\ForAdmin\image\saturation.png" />
+    <Content Include="Content\ForAdmin\image\search-icon.png" />
+    <Content Include="Content\ForAdmin\image\select2-spinner.gif" />
+    <Content Include="Content\ForAdmin\image\select2.png" />
+    <Content Include="Content\ForAdmin\image\select2x2.png" />
+    <Content Include="Content\ForAdmin\image\sidebar-menu-arrow.png" />
+    <Content Include="Content\ForAdmin\image\sidebar-search-close.png" />
+    <Content Include="Content\ForAdmin\image\sidebar-toggler.jpg" />
+    <Content Include="Content\ForAdmin\image\skype.png" />
+    <Content Include="Content\ForAdmin\image\social_facebook.png" />
+    <Content Include="Content\ForAdmin\image\social_googleplus.png" />
+    <Content Include="Content\ForAdmin\image\social_linkedin.png" />
+    <Content Include="Content\ForAdmin\image\social_rss.png" />
+    <Content Include="Content\ForAdmin\image\social_twitter.png" />
+    <Content Include="Content\ForAdmin\image\sort_asc.png" />
+    <Content Include="Content\ForAdmin\image\sort_asc_disabled.png" />
+    <Content Include="Content\ForAdmin\image\sort_both.png" />
+    <Content Include="Content\ForAdmin\image\sort_desc.png" />
+    <Content Include="Content\ForAdmin\image\sort_desc_disabled.png" />
+    <Content Include="Content\ForAdmin\image\spotify.png" />
+    <Content Include="Content\ForAdmin\image\sprite.png" />
+    <Content Include="Content\ForAdmin\image\spritemap%402x.png" />
+    <Content Include="Content\ForAdmin\image\spritemap.png" />
+    <Content Include="Content\ForAdmin\image\stumbleupon.png" />
+    <Content Include="Content\ForAdmin\image\switch.png" />
+    <Content Include="Content\ForAdmin\image\syncfusion-icons-white.png" />
+    <Content Include="Content\ForAdmin\image\syncfusion-icons.png" />
+    <Content Include="Content\ForAdmin\image\tumblr.png" />
+    <Content Include="Content\ForAdmin\image\twitter.png" />
+    <Content Include="Content\ForAdmin\image\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\ForAdmin\image\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\ForAdmin\image\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\ForAdmin\image\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\ForAdmin\image\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\ForAdmin\image\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\ForAdmin\image\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\ForAdmin\image\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\ForAdmin\image\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\ForAdmin\image\ui-icons_222222_256x240.png" />
+    <Content Include="Content\ForAdmin\image\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\ForAdmin\image\ui-icons_888888_256x240.png" />
+    <Content Include="Content\ForAdmin\image\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\ForAdmin\image\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\ForAdmin\image\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\ForAdmin\image\vimeo.png" />
+    <Content Include="Content\ForAdmin\image\vk.png" />
+    <Content Include="Content\ForAdmin\image\walmart.png" />
+    <Content Include="Content\ForAdmin\image\wordpress.png" />
+    <Content Include="Content\ForAdmin\image\xing.png" />
+    <Content Include="Content\ForAdmin\image\yahoo.png" />
+    <Content Include="Content\ForAdmin\image\youtube.png" />
+    <Content Include="Content\ForAdmin\js\additional-methods.min.js" />
+    <Content Include="Content\ForAdmin\js\ajaxformtool.js" />
+    <Content Include="Content\ForAdmin\js\app.js" />
+    <Content Include="Content\ForAdmin\js\bootstrap-colorpicker.js" />
+    <Content Include="Content\ForAdmin\js\bootstrap-datepicker.js" />
+    <Content Include="Content\ForAdmin\js\bootstrap-datetimepicker.js" />
+    <Content Include="Content\ForAdmin\js\bootstrap-fileupload.js" />
+    <Content Include="Content\ForAdmin\js\bootstrap-modal.js" />
+    <Content Include="Content\ForAdmin\js\bootstrap-modalmanager.js" />
+    <Content Include="Content\ForAdmin\js\bootstrap-rtl.min.js" />
+    <Content Include="Content\ForAdmin\js\bootstrap-tag.js" />
+    <Content Include="Content\ForAdmin\js\bootstrap-timepicker.js" />
+    <Content Include="Content\ForAdmin\js\bootstrap-tree.js" />
+    <Content Include="Content\ForAdmin\js\bootstrap-wysihtml5.js" />
+    <Content Include="Content\ForAdmin\js\bootstrap.min.js" />
+    <Content Include="Content\ForAdmin\js\breakpoints.js" />
+    <Content Include="Content\ForAdmin\js\breakpoints.min.js" />
+    <Content Include="Content\ForAdmin\js\calendar.js" />
+    <Content Include="Content\ForAdmin\js\canvas-to-blob.min.js" />
+    <Content Include="Content\ForAdmin\js\charts.js" />
+    <Content Include="Content\ForAdmin\js\chosen.jquery.min.js" />
+    <Content Include="Content\ForAdmin\js\ckeditor.js" />
+    <Content Include="Content\ForAdmin\js\clockface.js" />
+    <Content Include="Content\ForAdmin\js\coming-soon.js" />
+    <Content Include="Content\ForAdmin\js\contact-us.js" />
+    <Content Include="Content\ForAdmin\js\date.js" />
+    <Content Include="Content\ForAdmin\js\daterangepicker.js" />
+    <Content Include="Content\ForAdmin\js\dropzone.js" />
+    <Content Include="Content\ForAdmin\js\DT_bootstrap.js" />
+    <Content Include="Content\ForAdmin\js\excanvas.js" />
+    <Content Include="Content\ForAdmin\js\excanvas.min.js" />
+    <Content Include="Content\ForAdmin\js\form-components.js" />
+    <Content Include="Content\ForAdmin\js\form-fileupload.js" />
+    <Content Include="Content\ForAdmin\js\form-samples.js" />
+    <Content Include="Content\ForAdmin\js\form-validation.js" />
+    <Content Include="Content\ForAdmin\js\form-wizard.js" />
+    <Content Include="Content\ForAdmin\js\fullcalendar.min.js" />
+    <Content Include="Content\ForAdmin\js\gallery.js" />
+    <Content Include="Content\ForAdmin\js\gmaps.js" />
+    <Content Include="Content\ForAdmin\js\inbox.js" />
+    <Content Include="Content\ForAdmin\js\index.js" />
+    <Content Include="Content\ForAdmin\js\jquery-1.10.1.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery-1.8.3.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery-ui-1.10.1.custom.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.backstretch.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.blockui.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.bootpag.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.bootstrap.wizard.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.cookie.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.countdown.js" />
+    <Content Include="Content\ForAdmin\js\jquery.dataTables.js" />
+    <Content Include="Content\ForAdmin\js\jquery.dataTables.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.easy-pie-chart.js" />
+    <Content Include="Content\ForAdmin\js\jquery.fancybox.pack.js" />
+    <Content Include="Content\ForAdmin\js\jquery.fileupload-fp.js" />
+    <Content Include="Content\ForAdmin\js\jquery.fileupload-ui.js" />
+    <Content Include="Content\ForAdmin\js\jquery.fileupload.js" />
+    <Content Include="Content\ForAdmin\js\jquery.flot.crosshair.js" />
+    <Content Include="Content\ForAdmin\js\jquery.flot.js" />
+    <Content Include="Content\ForAdmin\js\jquery.flot.pie.js" />
+    <Content Include="Content\ForAdmin\js\jquery.flot.resize.js" />
+    <Content Include="Content\ForAdmin\js\jquery.flot.stack.js" />
+    <Content Include="Content\ForAdmin\js\jquery.form.js" />
+    <Content Include="Content\ForAdmin\js\jquery.gritter.js" />
+    <Content Include="Content\ForAdmin\js\jquery.iframe-transport.js" />
+    <Content Include="Content\ForAdmin\js\jquery.input-ip-address-control-1.0.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.inputmask.bundle.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.knob.js" />
+    <Content Include="Content\ForAdmin\js\jquery.multi-select.js" />
+    <Content Include="Content\ForAdmin\js\jquery.nestable.js" />
+    <Content Include="Content\ForAdmin\js\jquery.pulsate.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.slimscroll.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.sparkline.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.tagsinput.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.toggle.buttons.js" />
+    <Content Include="Content\ForAdmin\js\jquery.ui.widget.js" />
+    <Content Include="Content\ForAdmin\js\jquery.uniform.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.uploadify-3.1.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.validate.min.js" />
+    <Content Include="Content\ForAdmin\js\jquery.vmap.europe.js" />
+    <Content Include="Content\ForAdmin\js\jquery.vmap.germany.js" />
+    <Content Include="Content\ForAdmin\js\jquery.vmap.js" />
+    <Content Include="Content\ForAdmin\js\jquery.vmap.russia.js" />
+    <Content Include="Content\ForAdmin\js\jquery.vmap.sampledata.js" />
+    <Content Include="Content\ForAdmin\js\jquery.vmap.usa.js" />
+    <Content Include="Content\ForAdmin\js\jquery.vmap.world.js" />
+    <Content Include="Content\ForAdmin\js\jquery.xdr-transport.js" />
+    <Content Include="Content\ForAdmin\js\load-image.min.js" />
+    <Content Include="Content\ForAdmin\js\lock.js" />
+    <Content Include="Content\ForAdmin\js\login-soft.js" />
+    <Content Include="Content\ForAdmin\js\login.js" />
+    <Content Include="Content\ForAdmin\js\maps-google.js" />
+    <Content Include="Content\ForAdmin\js\maps-vector.js" />
+    <Content Include="Content\ForAdmin\js\portlet-draggable.js" />
+    <Content Include="Content\ForAdmin\js\respond.js" />
+    <Content Include="Content\ForAdmin\js\respond.min.js" />
+    <Content Include="Content\ForAdmin\js\search.js" />
+    <Content Include="Content\ForAdmin\js\select2.min.js" />
+    <Content Include="Content\ForAdmin\js\table-advanced.js" />
+    <Content Include="Content\ForAdmin\js\table-editable.js" />
+    <Content Include="Content\ForAdmin\js\table-managed.js" />
+    <Content Include="Content\ForAdmin\js\tmpl.min.js" />
+    <Content Include="Content\ForAdmin\js\ui-general.js" />
+    <Content Include="Content\ForAdmin\js\ui-jqueryui.js" />
+    <Content Include="Content\ForAdmin\js\ui-modals.js" />
+    <Content Include="Content\ForAdmin\js\ui-nestable.js" />
+    <Content Include="Content\ForAdmin\js\ui-sliders.js" />
+    <Content Include="Content\ForAdmin\js\ui-tree.js" />
+    <Content Include="Content\ForAdmin\js\wysihtml5-0.3.0.js" />
+    <Content Include="Content\ForAdmin\KindEditor\kindeditor.js" />
+    <Content Include="Content\ForAdmin\KindEditor\lang\ar.js" />
+    <Content Include="Content\ForAdmin\KindEditor\lang\en.js" />
+    <Content Include="Content\ForAdmin\KindEditor\lang\ko.js" />
+    <Content Include="Content\ForAdmin\KindEditor\lang\zh_CN.js" />
+    <Content Include="Content\ForAdmin\KindEditor\lang\zh_TW.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\anchor\anchor.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\autoheight\autoheight.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\baidumap\baidumap.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\baidumap\index.html" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\baidumap\map.html" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\clearhtml\clearhtml.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\code\code.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\code\prettify.css" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\code\prettify.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\emoticons.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\0.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\1.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\10.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\100.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\101.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\102.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\103.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\104.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\105.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\106.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\107.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\108.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\109.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\11.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\110.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\111.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\112.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\113.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\114.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\115.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\116.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\117.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\118.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\119.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\12.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\120.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\121.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\122.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\123.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\124.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\125.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\126.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\127.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\128.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\129.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\13.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\130.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\131.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\132.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\133.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\134.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\14.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\15.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\16.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\17.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\18.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\19.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\2.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\20.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\21.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\22.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\23.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\24.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\25.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\26.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\27.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\28.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\29.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\3.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\30.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\31.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\32.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\33.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\34.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\35.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\36.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\37.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\38.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\39.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\4.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\40.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\41.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\42.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\43.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\44.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\45.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\46.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\47.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\48.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\49.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\5.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\50.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\51.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\52.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\53.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\54.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\55.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\56.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\57.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\58.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\59.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\6.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\60.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\61.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\62.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\63.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\64.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\65.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\66.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\67.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\68.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\69.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\7.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\70.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\71.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\72.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\73.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\74.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\75.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\76.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\77.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\78.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\79.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\8.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\80.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\81.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\82.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\83.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\84.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\85.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\86.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\87.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\88.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\89.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\9.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\90.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\91.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\92.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\93.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\94.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\95.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\96.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\97.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\98.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\99.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\emoticons\images\static.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\filemanager\filemanager.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\filemanager\images\file-16.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\filemanager\images\file-64.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\filemanager\images\folder-16.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\filemanager\images\folder-64.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\filemanager\images\go-up.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\flash\flash.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\image\image.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\image\images\align_left.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\image\images\align_right.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\image\images\align_top.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\image\images\refresh.png" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\insertfile\insertfile.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\lineheight\lineheight.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\link\link.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\map\map.html" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\map\map.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\media\media.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\multiimage\images\image.png" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\multiimage\images\select-files-en.png" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\multiimage\images\select-files-zh_CN.png" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\multiimage\images\swfupload.swf" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\multiimage\multiimage.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\pagebreak\pagebreak.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\plainpaste\plainpaste.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\preview\preview.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\quickformat\quickformat.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\table\table.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\template\html\1.html" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\template\html\2.html" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\template\html\3.html" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\template\template.js" />
+    <Content Include="Content\ForAdmin\KindEditor\plugins\wordpaste\wordpaste.js" />
+    <Content Include="Content\ForAdmin\KindEditor\themes\common\anchor.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\themes\common\blank.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\themes\common\flash.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\themes\common\loading.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\themes\common\media.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\themes\common\rm.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\themes\default\background.png" />
+    <Content Include="Content\ForAdmin\KindEditor\themes\default\default.css" />
+    <Content Include="Content\ForAdmin\KindEditor\themes\default\default.png" />
+    <Content Include="Content\ForAdmin\KindEditor\themes\qq\editor.gif" />
+    <Content Include="Content\ForAdmin\KindEditor\themes\qq\qq.css" />
+    <Content Include="Content\ForAdmin\KindEditor\themes\simple\simple.css" />
+    <Content Include="Content\ForAdmin\Tree\demo.css" />
+    <Content Include="Content\ForAdmin\Tree\jquery.fancybox-1.3.4.css" />
+    <Content Include="Content\ForAdmin\Tree\jquery.fancybox-1.3.4.pack.js" />
+    <Content Include="Content\ForAdmin\Tree\jquery.mousewheel-3.0.4.pack.js" />
+    <Content Include="Content\ForAdmin\Tree\jquery.ztree.core-3.4.js" />
+    <Content Include="Content\ForAdmin\Tree\jquery.ztree.excheck-3.4.js" />
+    <Content Include="Content\ForAdmin\Tree\jquery.ztree.exedit-3.4.js" />
+    <Content Include="Content\ForAdmin\Tree\zTreeStyle\img\diy\1_close.png" />
+    <Content Include="Content\ForAdmin\Tree\zTreeStyle\img\diy\1_open.png" />
+    <Content Include="Content\ForAdmin\Tree\zTreeStyle\img\diy\2.png" />
+    <Content Include="Content\ForAdmin\Tree\zTreeStyle\img\diy\3.png" />
+    <Content Include="Content\ForAdmin\Tree\zTreeStyle\img\diy\4.png" />
+    <Content Include="Content\ForAdmin\Tree\zTreeStyle\img\diy\5.png" />
+    <Content Include="Content\ForAdmin\Tree\zTreeStyle\img\diy\6.png" />
+    <Content Include="Content\ForAdmin\Tree\zTreeStyle\img\diy\7.png" />
+    <Content Include="Content\ForAdmin\Tree\zTreeStyle\img\diy\8.png" />
+    <Content Include="Content\ForAdmin\Tree\zTreeStyle\img\diy\9.png" />
+    <Content Include="Content\ForAdmin\Tree\zTreeStyle\img\line_conn.gif" />
+    <Content Include="Content\ForAdmin\Tree\zTreeStyle\img\loading.gif" />
+    <Content Include="Content\ForAdmin\Tree\zTreeStyle\img\zTreeStandard.gif" />
+    <Content Include="Content\ForAdmin\Tree\zTreeStyle\img\zTreeStandard.png" />
+    <Content Include="Content\ForAdmin\Tree\zTreeStyle\zTreeStyle.css" />
+    <Content Include="Content\ForAdmin\uploadify.swf" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="css\bootstrap-responsive.css" />
+    <Content Include="css\bootstrap-responsive.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\bx_styles.css" />
+    <Content Include="css\haijun.css" />
+    <Content Include="css\jquery.fancybox.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\ForAdmin\image\css" />
+    <Content Include="Content\ForAdmin\image\fontawesome-webfont.eot" />
+    <Content Include="Content\ForAdmin\image\fontawesome-webfont.svg" />
+    <Content Include="Content\ForAdmin\image\fontawesome-webfont.ttf" />
+    <Content Include="Content\ForAdmin\image\fontawesome-webfont.woff" />
+    <Content Include="Content\ForAdmin\image\glyphicons-regular.eot" />
+    <Content Include="Content\ForAdmin\image\glyphicons-regular.svg" />
+    <Content Include="Content\ForAdmin\image\glyphicons-regular.ttf" />
+    <Content Include="Content\ForAdmin\image\glyphicons-regular.woff" />
+    <Content Include="Content\ForAdmin\image\glyphicons-white.svg" />
+    <Content Include="Content\ForAdmin\image\glyphiconshalflings-regular.eot" />
+    <Content Include="Content\ForAdmin\image\glyphiconshalflings-regular.svg" />
+    <Content Include="Content\ForAdmin\image\glyphiconshalflings-regular.ttf" />
+    <Content Include="Content\ForAdmin\image\glyphiconshalflings-regular.woff" />
+    <Content Include="Content\ForAdmin\image\glyphicons_halflings-white.svg" />
+    <Content Include="Content\ForAdmin\image\glyphicons_halflings.svg" />
+    <Content Include="Content\ForAdmin\image\js" />
+    <Content Include="img\build.png" />
+    <Content Include="img\design.png" />
+    <Content Include="img\pic_build_content_2.jpg" />
+    <Content Include="img\pic_build_content_3.jpg" />
+    <Content Include="img\Thumbs.db" />
+    <None Include="Properties\PublishProfiles\111.pubxml" />
+    <Content Include="img\about.jpg" />
+    <Content Include="img\b1.jpg" />
+    <Content Include="img\b2.jpg" />
+    <Content Include="img\b3.jpg" />
+    <Content Include="img\b4.jpg" />
+    <Content Include="img\blank.gif" />
+    <Content Include="img\border.png" />
+    <Content Include="img\fancybox_loading.gif" />
+    <Content Include="img\fancybox_overlay.png" />
+    <Content Include="img\fancybox_sprite.png" />
+    <Content Include="img\glyphicons-halflings-white.png" />
+    <Content Include="img\glyphicons-halflings.png" />
+    <Content Include="img\gray_auto.png" />
+    <Content Include="img\gray_next.png" />
+    <Content Include="img\gray_pager.png" />
+    <Content Include="img\gray_prev.png" />
+    <Content Include="img\h1.jpg" />
+    <Content Include="img\marker.png" />
+    <Content Include="img\s1.jpg" />
+    <Content Include="img\s2.jpg" />
+    <Content Include="img\s3.jpg" />
+    <Content Include="img\t1.jpg" />
+    <Content Include="img\t2.jpg" />
+    <Content Include="img\t3.jpg" />
+    <Content Include="img\t4.jpg" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery-1.8.2.min.js" />
+    <Content Include="js\jquery.bxSlider.min.js" />
+    <Content Include="js\jquery.fancybox.pack.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Shared\MenuPartial.cshtml" />
+    <Content Include="Views\Admin\AddArticle.cshtml" />
+    <Content Include="Views\Admin\UpdateArticle.cshtml" />
+    <Content Include="Views\Admin\ArticleList.cshtml" />
+    <Content Include="Views\Admin\DataCenter.cshtml" />
+    <Content Include="Views\Admin\CategoryList.cshtml" />
+    <Content Include="Views\Admin\AddProduct.cshtml" />
+    <Content Include="Views\Admin\ProductList.cshtml" />
+    <Content Include="Views\Admin\AddVote.cshtml" />
+    <Content Include="Views\Test\Concurrency.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Admin\UpdateProduct.cshtml" />
+    <Content Include="Views\Home\News.cshtml" />
+    <Content Include="Views\Home\Tag.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CJCMS.Application\CJCMS.Application.csproj">
+      <Project>{10686f35-b108-4123-9c8e-4ccd8dd51bb1}</Project>
+      <Name>CJCMS.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CJCMS.Contracts\CJCMS.Contracts.csproj">
+      <Project>{2023d4d2-fc0e-42e3-9ed8-47f46a6ac059}</Project>
+      <Name>CJCMS.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>80</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2830/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

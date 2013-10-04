@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="CJCMS.Domain" assembly="CJCMS.Domain">
+  <class name="CJCMS.Domain.Entity.Category, CJCMS.Domain" table="[dbo].[Category]" lazy="true">
+    <id name="Id" column="[CategoryId]">
+      <generator class="assigned" />
+    </id>
+    <property name="CategoryName" column="[CategoryName]" />
+    <property name="ExInfo" column="[ExInfo]" />
+    <property name="SortNum" column="[Sort]" />
+    <property name="ParentId" column="[PCategoryId]" />
+    <property name="IconName" column="[Icon]" />
+    <property name="Status" column="[Status]" />
+  </class>
+</hibernate-mapping>

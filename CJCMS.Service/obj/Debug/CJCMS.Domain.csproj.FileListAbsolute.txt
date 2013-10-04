@@ -1,0 +1,16 @@
+I:\jinxiaocun\CJCMS.Service\bin\Debug\CJCMS.Domain.dll
+I:\jinxiaocun\CJCMS.Service\bin\Debug\CJCMS.Domain.pdb
+I:\jinxiaocun\CJCMS.Service\bin\Debug\CJCMS.Data.dll
+I:\jinxiaocun\CJCMS.Service\bin\Debug\CJCMS.Framework.dll
+I:\jinxiaocun\CJCMS.Service\bin\Debug\NHibernate.dll
+I:\jinxiaocun\CJCMS.Service\bin\Debug\log4net.dll
+I:\jinxiaocun\CJCMS.Service\bin\Debug\PanGu.Lucene.Analyzer.dll
+I:\jinxiaocun\CJCMS.Service\bin\Debug\Newtonsoft.Json.dll
+I:\jinxiaocun\CJCMS.Service\bin\Debug\Iesi.Collections.dll
+I:\jinxiaocun\CJCMS.Service\bin\Debug\log4net.xml
+I:\jinxiaocun\CJCMS.Service\obj\Debug\CJCMS.Domain.dll
+I:\jinxiaocun\CJCMS.Service\obj\Debug\CJCMS.Domain.pdb
+I:\jinxiaocun\CJCMS.Service\bin\Debug\Autofac.Configuration.dll
+I:\jinxiaocun\CJCMS.Service\bin\Debug\Autofac.dll
+I:\jinxiaocun\CJCMS.Service\bin\Debug\Lucene.Net.dll
+I:\jinxiaocun\CJCMS.Service\bin\Debug\Autofac.xml

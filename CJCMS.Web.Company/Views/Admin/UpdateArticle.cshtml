@@ -1,0 +1,337 @@
+﻿@model CJCMS.Contracts.DTO.Article.ArticleDTO
+@{
+    Layout = null;
+    //CJCMS.Application.CategoryManager ca = new CJCMS.Application.CategoryManager();
+    //IList<CJCMS.Contracts.DTO.Category.CategoryInfo> clist = ca.FetchByPCategoryId("9E5DBC40-1FD0-E6A0-4107-3BBFB4ACEF5D");
+    IList<CJCMS.Contracts.DTO.Category.CategoryInfo> clist = ViewBag.Cate;
+}
+
+<div class="container-fluid">
+
+				<!-- BEGIN PAGE HEADER-->   
+
+				<div class="row-fluid">
+
+					<div class="span12">
+						<h3 class="page-title">
+
+							修改文章
+
+							 <small></small>
+
+						</h3>
+
+						<ul class="breadcrumb">
+
+							<li>
+
+								<i class="icon-home"></i>
+
+								<a href="/Admin/Index">操作中心面板</a> 
+
+								<span class="icon-angle-right"></span>
+
+							</li>
+
+							<li>
+
+								<a href="#">文章管理</a>
+
+								<span class="icon-angle-right"></span>
+
+							</li>
+
+							<li><a href="#">修改文章</a></li>
+
+						</ul>
+
+					</div>
+
+				</div>
+
+				<!-- END PAGE HEADER-->
+
+				<!-- BEGIN PAGE CONTENT-->
+
+				<div class="row-fluid">
+
+					<div class="span12">
+
+						<!-- BEGIN VALIDATION STATES-->
+
+						<div class="portlet box blue">
+
+							<div class="portlet-title">
+
+								<div class="caption"><i class="icon-reorder"></i>文章信息</div>
+							</div>
+
+							<div class="portlet-body form">
+
+								<!-- BEGIN FORM-->
+
+                                    <form id = "form_sample_1" class = "form-horizontal" novalidate = "novalidate">
+                                    <input name="id" value="@Model.Id" type="text" style="display:none" />
+									<div class="alert alert-error hide">
+
+										<button class="close" data-dismiss="alert"></button>
+                                        登录不成功。请更正错误并重试。
+									</div>
+
+									<div class="alert alert-success hide">
+
+										<button class="close" data-dismiss="alert"></button>
+
+										Your form validation is successful!
+
+									</div>
+                                    <div class="control-group">
+
+													<label class="control-label">语言版本<span class="required">*</span></label>
+
+													<div class="controls">
+                                                            @if(Model.Lang=="zh-CN")
+                                                            {
+														        <label class="radio"><div class="radio"><span class="checked"><input type="radio" checked="checked" name="lang" value="zh-CN"></span></div>中文</label>
+                                                                <label class="radio"><div class="radio"><span class=""><input type="radio" name="lang" value="en"></span></div>英文</label>
+                                                            }
+                                                            else
+                                                            {
+                                                                <label class="radio"><div class="radio"><span class=""><input type="radio"  name="lang" value="zh-CN" ></span></div>中文</label>
+                                                                <label class="radio"><div class="radio"><span class="checked"><input type="radio" checked="checked" name="lang" value="en"></span></div>英文</label>
+                                                            }
+													</div>
+
+												</div>
+                                     <div class="control-group">
+													<label class="control-label">是否上线<span class="required">*</span></label>
+                                         <label class="checkbox">
+													<div class="controls">
+                                                        @if (Model.Status == "on")
+                                                        {
+														        <input name="status" checked="checked" type="checkbox"/>
+                                                        }
+                                                        else
+                                                        {
+                                                                <input name="status" type="checkbox"/>
+                                                        }
+													</div>
+                                             </label>
+												</div>
+									<div class="control-group">
+
+										<label class="control-label">新闻标题<span class="required">*</span></label>
+
+										<div class="controls">
+
+											<input type="text" name="title" value="@Model.Title" data-required="1" class="span6 m-wrap">
+
+										</div>
+
+									</div>
+
+
+                                    <div class="control-group">
+
+										<label class="control-label">文章属于分类<span class="required">*</span></label>
+
+										<div class="controls">
+
+											<select class="span6 m-wrap" name="category">
+
+												<option value="">请选择</option>
+                                                @foreach (CJCMS.Contracts.DTO.Category.CategoryInfo c in clist)
+                                                {
+                                                    if (Model.CategoryId == c.Id)
+                                                    {
+												        <option selected="selected" value="@c.Id">@c.CategoryName</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@c.Id">@c.CategoryName</option>
+                                                    }
+                                                }
+
+											</select>
+
+										</div>
+
+									</div>
+
+									<div class="control-group">
+
+										<label class="control-label">图片<span class="required">*</span></label>
+
+										<div class="controls">
+                                            <input id="aimage" type="file" name="aimage1" />
+                                            <input id="aimage1" type="text" value="@Model.ImgUrl" name="aimage" style="display:none" />
+										</div>
+
+									</div>
+
+									<div class="control-group">
+
+										<label class="control-label">新闻内容<span class="required">*</span></label>
+
+										<div class="controls">
+                                            <textarea id="content1" name="content1" cols="100" rows="8"style="width:700px;height:400px;visibility:hidden;">@Model.Body</textarea>
+
+
+										</div>
+
+									</div>
+									<div class="form-actions">
+
+										<button type="submit" class="btn purple">修改</button>
+
+										<button type="button" class="btn">取消</button>
+
+									</div>
+
+								</form>
+
+								<!-- END FORM-->
+
+							</div>
+
+						</div>
+
+						<!-- END VALIDATION STATES-->
+
+					</div>
+
+				</div>
+
+				<!-- END PAGE CONTENT-->         
+
+			</div>
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+	<script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/jquery.validate.min.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/additional-methods.min.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/select2.min.js")"></script>
+	<script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/chosen.jquery.min.js")"></script>    <link rel="stylesheet" href="@Url.Content("~/Content/ForAdmin/css/uploadify.css")" type="text/css">
+     
+    <script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/jquery.uploadify-3.1.min.js")"></script>
+
+     <script type="text/javascript" src="@Url.Content("~/Content/ForAdmin/js/ajaxformtool.js")"></script>
+
+	<script>
+	    //return false;
+	    $("#aimage").uploadify({
+	        'swf': '@Url.Content("~/Content/ForAdmin/uploadify.swf")',
+	        'uploader': '/Admin/UploadImage',
+	        'onUploadSuccess': function (file, data, response) {
+	            $("#aimage1").val(data);
+	        }
+	    });
+	    // KindEditor.ready(function (K) {
+	    //   alert('');
+	    var editor1 = KindEditor.create('#content1', {
+	        cssPath: '../plugins/code/prettify.css',
+	        uploadJson: '/Admin/UploadImage',
+	        fileManagerJson: '/Admin/UploadFile',
+	        allowFileManager: true,
+	        afterCreate: function () {
+	            var self = this;
+	            KindEditor.ctrl(document, 13, function () {
+	                self.sync();
+	                K('form[name=example]')[0].submit();
+	            });
+	            KindEditor.ctrl(self.edit.doc, 13, function () {
+	                self.sync();
+	                K('form[name=example]')[0].submit();
+	            });
+	        }
+	    });
+	    prettyPrint();
+	    // });
+	</script>
+	<!-- END PAGE LEVEL PLUGINS -->
+	<!-- BEGIN PAGE LEVEL STYLES -->
+	<!-- END PAGE LEVEL STYLES -->    
+	<script>
+	    // for more info visit the official plugin documentation: 
+	    // http://docs.jquery.com/Plugins/Validation
+
+	    var form1 = $('#form_sample_1');
+	    var error1 = $('.alert-error', form1);
+	    var success1 = $('.alert-success', form1);
+
+	    form1.validate({
+	        errorElement: 'span', //default input error message container
+	        errorClass: 'help-inline', // default input error message class
+	        focusInvalid: false, // do not focus the last invalid input
+	        ignore: "",
+	        rules: {
+	            title: {
+	                required: true
+	            },
+	            aimage: {
+	                required: true
+	            },
+	            content1: {
+	                required: true
+	            },
+	            category: {
+	                required: true
+	            }
+	        },
+
+	        invalidHandler: function (event, validator) { //display error alert on form submit              
+	            success1.hide();
+	            error1.show();
+	            App.scrollTo(error1, -200);
+	        },
+
+	        highlight: function (element) { // hightlight error inputs
+	            $(element)
+                    .closest('.help-inline').removeClass('ok'); // display OK icon
+	            $(element)
+                    .closest('.control-group').removeClass('success').addClass('error'); // set error class to the control group
+	        },
+
+	        unhighlight: function (element) { // revert the change dony by hightlight
+	            $(element)
+                    .closest('.control-group').removeClass('error'); // set error class to the control group
+	        },
+
+	        success: function (label) {
+	            label
+                    .addClass('valid').addClass('help-inline ok') // mark the current input as valid and display OK icon
+                .closest('.control-group').removeClass('error').addClass('success'); // set success class to the control group
+	        },
+
+	        submitHandler: function (form) {
+	            success1.show();
+	            error1.hide();
+	            $.ajax({
+	                type: "POST",
+	                url: '/Admin/UpdateArticle',
+	                data: getFormJson(form),
+	                error: function (request) {
+	                    alert(request);
+	                },
+	                success: function (data) {
+	                    var unique_id = $.gritter.add({
+	                        // (string | mandatory) the heading of the notification
+	                        title: '提示信息',
+	                        // (string | mandatory) the text inside the notification
+	                        text: data,
+	                        // (string | optional) the image to display on the left
+	                        //image: './assets/img/avatar1.jpg',
+	                        // (bool | optional) if you want it to fade out on its own or just sit there
+	                        //sticky: true,
+	                        // (int | optional) the time you want it to be alive for before fading out
+	                        //time: '',
+	                        // (string | optional) the class name you want to apply to that specific message
+	                        //class_name: 'my-sticky-class'
+	                    });
+	                    return false;
+	                }
+	            });
+	            //return;
+	        }
+	    });
+	</script>
+	<!-- END JAVASCRIPTS -->   
+<!-- END BODY -->

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="CJCMS.Domain" assembly="CJCMS.Domain">
+  <class name="CJCMS.Domain.Entity.Account, CJCMS.Domain" table="[dbo].[Account]" lazy="true">
+    <id name="Id" column="[UserId]">
+      <generator class="assigned" />
+    </id>
+    <property name="Name" column="[LoginName]" />
+    <property name="Salts" column="[Salts]" />
+    <property name="Pwd" column="[Pwd]" />
+    <property name="Role" column="[Role]" />
+    <property name="Email" column="[Email]" />
+    <property name="IsForbidden" column="[IsForbidden]" />
+    <property name="Created" column="[Created]" />
+  </class>
+</hibernate-mapping>
