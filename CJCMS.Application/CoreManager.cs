@@ -20,6 +20,7 @@ using CJCMS.Contracts.Service;
 using CJCMS.Contracts.DTO;
 using CJCMS.Domain.Entity;
 using CJCMS.Contracts.DTO.Category;
+using CJCMS.Contracts.DTO.Product;
 
 
 namespace CJCMS.Application
@@ -42,6 +43,11 @@ namespace CJCMS.Application
             AutoMapper.Mapper.CreateMap<CategoryInfo, Category>();
             #endregion
 
+            #region 产品
+            //产品
+            AutoMapper.Mapper.CreateMap<Product, ProductDTO>();
+            AutoMapper.Mapper.CreateMap<ProductDTO, Product>();
+            #endregion
         }
 
         public void AfterDoCoreJob()
