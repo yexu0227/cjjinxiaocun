@@ -19,7 +19,7 @@ using System.Text;
 
 namespace CJCMS.Domain.Entity
 {
-    public sealed class Finance : IEntity
+    public class Finance : IEntity
     {
         public virtual string Id { get; set; }
         public virtual DateTime Time { get; set; }

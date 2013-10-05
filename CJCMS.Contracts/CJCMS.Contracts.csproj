@@ -60,11 +60,19 @@
     <Compile Include="DTO\Account\RegisterDTO.cs" />
     <Compile Include="DTO\Category\CategoryDTO.cs" />
     <Compile Include="DTO\Category\CategoryInfo.cs" />
+    <Compile Include="DTO\Customer\CustomerDTO.cs" />
+    <Compile Include="DTO\Customer\CustomerInfo.cs" />
+    <Compile Include="DTO\Customer\CustomerStatusDTO.cs" />
+    <Compile Include="DTO\Product\ProductDTO.cs" />
+    <Compile Include="DTO\Product\ProductInfo.cs" />
+    <Compile Include="DTO\Product\ProductStatusDTO.cs" />
     <Compile Include="DTO\ResultMsg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\IAccountManager.cs" />
     <Compile Include="Service\ICategoryManager.cs" />
     <Compile Include="Service\ICoreManager..cs" />
+    <Compile Include="Service\ICustomerManager.cs" />
+    <Compile Include="Service\IProductManager.cs" />
     <Compile Include="TValidationHelper.cs" />
   </ItemGroup>
   <ItemGroup />

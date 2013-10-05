@@ -19,7 +19,7 @@ using System.Text;
 
 namespace CJCMS.Domain.Entity
 {
-    public sealed class BuyIn : IEntity
+    public  class BuyIn : IEntity
     {
         public virtual string Id { get; set; }
         public virtual DateTime Created { get; set; }

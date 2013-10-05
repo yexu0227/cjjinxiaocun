@@ -19,7 +19,7 @@ using System.Text;
 
 namespace CJCMS.Domain.Entity
 {
-    public sealed class Supplier : IEntity
+    public class Supplier : IEntity
     {
         public virtual string Id { get; set; }
         public virtual string CustomerName { get; set; }
