@@ -1,4 +1,5 @@
-﻿// 作者:					曹军 
+﻿using CJCMS.Contracts.DTO.Customer;
+// 作者:					曹军 
 // 邮件：               869722304@qq.com(仅仅支持商业合作洽谈)
 // 创建时间:			    2012-08-8
 // 最后修改时间:			2012-08-11
@@ -11,7 +12,6 @@
 // 您一旦下载就视为您已经阅读此声明。
 //
 // 您不可以移除项目中任何声明。
-using CJCMS.Contracts.DTO.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,50 +19,59 @@ using System.Text;
 
 namespace CJCMS.Contracts.Service
 {
-    public interface IProductManager
+    public interface ICustomerManager
     {
         /// <summary>
-        /// 添加商品
+        /// 添加客户
         /// </summary>
-        /// <param name="p"></param>
-        void AddProduct(ProductDTO p);
+        /// <param name="c"></param>
+        void AddCustomer(CustomerDTO c);
 
         /// <summary>
-        /// 修改商品
+        /// 修改客户
         /// </summary>
-        /// <param name="p"></param>
-        void UpdateProduct(ProductInfo p);
+        /// <param name="c"></param>
+        void UpdateCustomer(CustomerInfo c);
 
         /// <summary>
-        /// 设置商品上线
+        /// 设置客户可用
         /// </summary>
-        /// <param name="p"></param>
-        void SetProductOn(ProductStatusDTO p);
+        /// <param name="c"></param>
+        void SetCustomerOn(CustomerStatusDTO c);
 
         /// <summary>
-        /// 设置商品下线
+        /// 设置客户不可用
         /// </summary>
-        /// <param name="p"></param>
-        void SetProductOff(ProductStatusDTO p);
+        /// <param name="c"></param>
+        void SetCustomerOff(CustomerStatusDTO c);
 
         /// <summary>
         /// 查询
         /// </summary>
-        /// <param name="categoryId">分类编号</param>
         /// <param name="index">页码</param>
         /// <param name="pagecount">页大小</param>
         /// <param name="totalCount">总数</param>
         /// <returns></returns>
-        IList<ProductInfo> FetchProductByCategory(string categoryId,int index,int pagecount,out int totalCount);
+        IList<CustomerInfo> FetchCustomer(int index, int pagecount, out int totalCount);
+
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <param name="status">状态</param>
+        /// <param name="index">页码</param>
+        /// <param name="pagecount">页大小</param>
+        /// <param name="totalCount">总数</param>
+        /// <returns></returns>
+        IList<CustomerInfo> FetchCustomerByStatus(int status, int index, int pagecount, out int totalCount);
 
         /// <summary>
         /// 从Excel导入商品到数据库
         /// </summary>
-        void ImportProductFromExcel();
+        void ImportCustomerFromExcel();
 
         /// <summary>
         /// 从数据库导出到Excel
         /// </summary>
-        void ExportProductToExcel();
+        void ExportCustomerToExcel();
     }
 }
