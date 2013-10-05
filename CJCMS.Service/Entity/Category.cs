@@ -19,7 +19,7 @@ using CJCMS.Data;
 
 namespace CJCMS.Domain.Entity
 {
-    public class Category : IEntity
+    public sealed class Category : IEntity
     {
         #region 私有属性
         /// <summary>

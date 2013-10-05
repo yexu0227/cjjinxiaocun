@@ -20,7 +20,7 @@ using CJCMS.Framework.Security;
 
 namespace CJCMS.Domain.Entity
 {
-    public class Account:IEntity
+    public sealed class Account : IEntity
     {
         #region 私有属性
         /// <summary>

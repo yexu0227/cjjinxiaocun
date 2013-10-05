@@ -70,6 +70,16 @@
   <ItemGroup>
     <Folder Include="ValueObject\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Map\BuyIn.hbm.xml" />
+    <Content Include="Map\BuyInItem.hbm.xml" />
+    <Content Include="Map\Customer.hbm.xml" />
+    <Content Include="Map\Finance.hbm.xml" />
+    <Content Include="Map\Product.hbm.xml" />
+    <Content Include="Map\Sell.hbm.xml" />
+    <Content Include="Map\SellItem.hbm.xml" />
+    <Content Include="Map\Supplier.hbm.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
