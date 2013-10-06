@@ -67,15 +67,23 @@
     <Compile Include="DTO\Product\ProductInfo.cs" />
     <Compile Include="DTO\Product\ProductStatusDTO.cs" />
     <Compile Include="DTO\ResultMsg.cs" />
+    <Compile Include="DTO\Supplier\SupplierDTO.cs" />
+    <Compile Include="DTO\Supplier\SupplierInfo.cs" />
+    <Compile Include="DTO\Supplier\SupplierStatusDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\IAccountManager.cs" />
     <Compile Include="Service\ICategoryManager.cs" />
     <Compile Include="Service\ICoreManager..cs" />
     <Compile Include="Service\ICustomerManager.cs" />
     <Compile Include="Service\IProductManager.cs" />
+    <Compile Include="Service\ISupplierManager.cs" />
     <Compile Include="TValidationHelper.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DTO\BuyIn\" />
+    <Folder Include="DTO\Finance\" />
+    <Folder Include="DTO\Sell\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

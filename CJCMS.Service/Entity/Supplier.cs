@@ -22,16 +22,16 @@ namespace CJCMS.Domain.Entity
     public class Supplier : IEntity
     {
         public virtual string Id { get; set; }
-        public virtual string CustomerName { get; set; }
+        public virtual string SupplierName { get; set; }
         public virtual string ContactName { get; set; }
-        public virtual string CustomerPhomeNum { get; set; }
-        public virtual string CustomerQQ { get; set; }
-        public virtual string CustomerFaxNum { get; set; }
-        public virtual string CustomerAddress { get; set; }
-        public virtual string CustomerZipCode { get; set; }
-        public virtual string CustomerEmail { get; set; }
-        public virtual decimal CustomerInitOwing { get; set; }
-        public virtual decimal CustomerNowOwing { get; set; }
+        public virtual string SupplierPhomeNum { get; set; }
+        public virtual string SupplierQQ { get; set; }
+        public virtual string SupplierFaxNum { get; set; }
+        public virtual string SupplierAddress { get; set; }
+        public virtual string SupplierZipCode { get; set; }
+        public virtual string SupplierEmail { get; set; }
+        public virtual decimal SupplierInitOwing { get; set; }
+        public virtual decimal SupplierNowOwing { get; set; }
         public virtual DateTime Updated { get; set; }
         public virtual DateTime Created { get; set; }
         public virtual int Status { get; set; }

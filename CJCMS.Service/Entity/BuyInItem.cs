@@ -28,7 +28,7 @@ namespace CJCMS.Domain.Entity
         public virtual string ProductName { get; set; }
         public virtual string Unit { get; set; }
         public virtual decimal SinglePrice { get; set; }
-        public virtual string SellId { get; set; }
+        public virtual string BuyInId { get; set; }
         public virtual int Count { get; set; }
         public virtual string OtherInfo { get; set; }
     }

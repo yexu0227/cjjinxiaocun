@@ -67,17 +67,26 @@
     <Compile Include="Entity\Sell.cs" />
     <Compile Include="Entity\SellItem.cs" />
     <Compile Include="Entity\Supplier.cs" />
+    <Compile Include="Service\BuyInService.cs" />
     <Compile Include="Service\CategoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AccountService.cs" />
+    <Compile Include="Service\CustomerService.cs" />
+    <Compile Include="Service\FinanceService.cs" />
+    <Compile Include="Service\ProductService.cs" />
+    <Compile Include="Service\SellService.cs" />
+    <Compile Include="Service\SupplierService.cs" />
+    <Compile Include="ValueObject\BuyInStatus.cs" />
+    <Compile Include="ValueObject\CustomerStatus.cs" />
+    <Compile Include="ValueObject\ProductStatus.cs" />
+    <Compile Include="ValueObject\SellStatus.cs" />
+    <Compile Include="ValueObject\SupplierStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Map\Account.hbm.xml" />
     <EmbeddedResource Include="Map\Category.hbm.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ValueObject\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Map\BuyIn.hbm.xml" />
     <Content Include="Map\BuyInItem.hbm.xml" />
