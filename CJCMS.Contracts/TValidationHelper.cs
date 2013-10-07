@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
+using Newtonsoft.Json;
 
 namespace CJCMS.Contracts
 {
@@ -25,14 +26,14 @@ namespace CJCMS.Contracts
         public static void TValidation(T t)
         {
             ValidationResults results = Validation.Validate<T>(t);
-            string msg = string.Empty;
+            //string msg = string.Empty;
             if (!results.IsValid)
             {
-                foreach (ValidationResult vr in results)
-                {
-                    msg += vr.Message;
-                }
-                throw new Exception(msg);
+                //foreach (ValidationResult vr in results)
+                //{
+                //    msg += vr.Message;
+                //}
+                throw new Exception(JsonConvert.SerializeObject(results));
             }
         }
     }

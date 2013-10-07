@@ -21,6 +21,8 @@ using CJCMS.Contracts.DTO;
 using CJCMS.Domain.Entity;
 using CJCMS.Contracts.DTO.Category;
 using CJCMS.Contracts.DTO.Product;
+using CJCMS.Contracts.DTO.Customer;
+using CJCMS.Contracts.DTO.Supplier;
 
 
 namespace CJCMS.Application
@@ -37,6 +39,22 @@ namespace CJCMS.Application
             AutoMapper.Mapper.CreateMap<Account, AccountInfo>();
             #endregion
 
+            #region 顾客
+            //顾客
+            AutoMapper.Mapper.CreateMap<CustomerInfo, Customer>();
+            AutoMapper.Mapper.CreateMap<CustomerDTO, Customer>();
+            AutoMapper.Mapper.CreateMap<CustomerStatusDTO, Customer>();
+            AutoMapper.Mapper.CreateMap<Customer, CustomerInfo>();
+            #endregion
+
+            #region 供应商
+            //供应商
+            AutoMapper.Mapper.CreateMap<SupplierInfo, Supplier>();
+            AutoMapper.Mapper.CreateMap<SupplierDTO, Supplier>();
+            AutoMapper.Mapper.CreateMap<SupplierStatusDTO, Supplier>();
+            AutoMapper.Mapper.CreateMap<Supplier, SupplierInfo>();
+            #endregion
+
             #region 分类
             //分类
             AutoMapper.Mapper.CreateMap<Category, CategoryInfo>();
@@ -45,8 +63,9 @@ namespace CJCMS.Application
 
             #region 产品
             //产品
-            AutoMapper.Mapper.CreateMap<Product, ProductDTO>();
+            AutoMapper.Mapper.CreateMap<ProductInfo, Product>();
             AutoMapper.Mapper.CreateMap<ProductDTO, Product>();
+            AutoMapper.Mapper.CreateMap<ProductInfo, Product>();
             #endregion
         }
 

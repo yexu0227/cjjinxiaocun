@@ -53,6 +53,18 @@ namespace CJCMS.Domain.Service
         }
 
         /// <summary>
+        /// 创建销售单
+        /// </summary>
+        /// <param name="buyIn"></param>
+        public void AddSell(Sell sell)
+        {
+            IRepository<Sell> ir = null;
+            ir = AutofacManager<IRepository<Sell>>.GetConcrete<DefaultRepository<Sell>>();
+            ir.Add(sell);
+            NHibernateSessionManager.Instance.Session.CommitChanges();
+        }
+
+        /// <summary>
         /// 添加销售项目到销售单
         /// </summary>
         /// <param name="sellItemList"></param>

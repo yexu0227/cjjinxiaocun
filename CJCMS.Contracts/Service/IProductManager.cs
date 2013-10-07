@@ -56,6 +56,17 @@ namespace CJCMS.Contracts.Service
         IList<ProductInfo> FetchProductByCategory(string categoryId,int index,int pagecount,out int totalCount);
 
         /// <summary>
+        /// 按照商品名称模糊查询
+        /// </summary>
+        /// <param name="categoryId">分类编号</param>
+        /// <param name="name">商品名称</param>
+        /// <param name="index">页码</param>
+        /// <param name="pagecount">页大小</param>
+        /// <param name="totalCount">总数</param>
+        /// <returns></returns>
+        IList<ProductInfo> FetchProductByCategoryAndName(string categoryId,string name, int index, int pagecount, out int totalCount);
+
+        /// <summary>
         /// 从Excel导入商品到数据库
         /// </summary>
         void ImportProductFromExcel();

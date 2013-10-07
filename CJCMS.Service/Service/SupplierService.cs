@@ -56,7 +56,7 @@ namespace CJCMS.Domain.Service
         /// <param name="count">页大小</param>
         /// <param name="allCount">总数</param>
         /// <returns></returns>
-        public IList<Supplier> FetchAll(int index, int count, ref int allCount)
+        public IList<Supplier> FetchAll(int index, int count, out int allCount)
         {
             IRepository<Supplier> ir = null;
             ir = AutofacManager<IRepository<Supplier>>.GetConcrete<DefaultRepository<Supplier>>();
@@ -72,12 +72,28 @@ namespace CJCMS.Domain.Service
         /// <param name="count">页大小</param>
         /// <param name="allCount">总数</param>
         /// <returns></returns>
-        public IList<Supplier> FetchAllByName(string name, int index, int count, ref int allCount)
+        public IList<Supplier> FetchByName(string name, int index, int count, out int allCount)
         {
             IRepository<Supplier> ir = null;
             ir = AutofacManager<IRepository<Supplier>>.GetConcrete<DefaultRepository<Supplier>>();
             allCount = ir.Count(a => a.Id != null && a.SupplierName.Contains(name));
             return ir.Table.Where(a => a.Id != null && a.SupplierName.Contains(name)).Skip((index - 1) * count).Take(count).OrderBy(k => k.Created).ToList();
+        }
+
+        /// <summary>
+        /// 在分类下按照供应商状态查询
+        /// </summary>
+        /// <param name="name">供应商状态</param>
+        /// <param name="index">页号</param>
+        /// <param name="count">页大小</param>
+        /// <param name="allCount">总数</param>
+        /// <returns></returns>
+        public IList<Supplier> FetchByStatus(int status, int index, int count, out int allCount)
+        {
+            IRepository<Supplier> ir = null;
+            ir = AutofacManager<IRepository<Supplier>>.GetConcrete<DefaultRepository<Supplier>>();
+            allCount = ir.Count(a => a.Id != null && a.Status == status);
+            return ir.Table.Where(a => a.Id != null && a.Status == status).Skip((index - 1) * count).Take(count).OrderBy(k => k.Created).ToList();
         }
 
         /// <summary>

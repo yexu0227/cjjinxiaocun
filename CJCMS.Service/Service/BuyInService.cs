@@ -1,7 +1,4 @@
-﻿using CJCMS.Data;
-using CJCMS.Domain.Entity;
-using CJCMS.Framework.Autofac;
-// 作者:					曹军 
+﻿// 作者:					曹军 
 // 邮件：               869722304@qq.com(仅仅支持商业合作洽谈)
 // 创建时间:			    2012-08-8
 // 最后修改时间:			2012-08-11
@@ -14,6 +11,9 @@ using CJCMS.Framework.Autofac;
 // 您一旦下载就视为您已经阅读此声明。
 //
 // 您不可以移除项目中任何声明。
+using CJCMS.Data;
+using CJCMS.Domain.Entity;
+using CJCMS.Framework.Autofac;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +28,7 @@ namespace CJCMS.Domain.Service
         /// </summary>
         /// <param name="BuyIn">进货单</param>
         /// <param name="BuyInItemList">进货单项列表</param>
-        public void AddBuyIn(BuyIn BuyIn, IList<BuyInItem> BuyInItemList)
+        public void AddBuyIn(BuyIn buyIn, IList<BuyInItem> BuyInItemList)
         {
             IRepository<BuyIn> ir = null;
             ir = AutofacManager<IRepository<BuyIn>>.GetConcrete<DefaultRepository<BuyIn>>();
@@ -37,7 +37,7 @@ namespace CJCMS.Domain.Service
             NHibernateSessionManager.Instance.Session.BeginTransaction();
             try
             {
-                ir.Add(BuyIn);
+                ir.Add(buyIn);
                 foreach (BuyInItem item in BuyInItemList)
                 {
                     irBuyInItem.Add(item);
@@ -51,6 +51,17 @@ namespace CJCMS.Domain.Service
             }
         }
 
+        /// <summary>
+        /// 创建采购单
+        /// </summary>
+        /// <param name="buyIn"></param>
+        public void AddBuyIn(BuyIn buyIn)
+        {
+            IRepository<BuyIn> ir = null;
+            ir = AutofacManager<IRepository<BuyIn>>.GetConcrete<DefaultRepository<BuyIn>>();
+            ir.Add(buyIn);
+            NHibernateSessionManager.Instance.Session.CommitChanges();
+        }
         /// <summary>
         /// 添加进货项目到进货单
         /// </summary>

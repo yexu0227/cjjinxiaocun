@@ -57,7 +57,7 @@ namespace CJCMS.Domain.Service
         /// <param name="count">页大小</param>
         /// <param name="allCount">总数</param>
         /// <returns></returns>
-        public IList<Product> FetchAllByCategory(string categoryId, int index, int count,ref int allCount)
+        public IList<Product> FetchAllByCategory(string categoryId, int index, int count,out int allCount)
         {
             IRepository<Product> ir = null;
             ir = AutofacManager<IRepository<Product>>.GetConcrete<DefaultRepository<Product>>();
@@ -73,7 +73,7 @@ namespace CJCMS.Domain.Service
         /// <param name="count">页大小</param>
         /// <param name="allCount">总数</param>
         /// <returns></returns>
-        public IList<Product> FetchAllByCategoryAndName(string categoryId, string name,int index, int count, ref int allCount)
+        public IList<Product> FetchAllByCategoryAndName(string categoryId, string name,int index, int count, out int allCount)
         {
             IRepository<Product> ir = null;
             ir = AutofacManager<IRepository<Product>>.GetConcrete<DefaultRepository<Product>>();
