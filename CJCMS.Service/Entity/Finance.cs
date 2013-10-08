@@ -21,13 +21,37 @@ namespace CJCMS.Domain.Entity
 {
     public class Finance : IEntity
     {
+        /// <summary>
+        /// 财务编号
+        /// </summary>
         public virtual string Id { get; set; }
+        /// <summary>
+        /// 财务时间
+        /// </summary>
         public virtual DateTime Time { get; set; }
+        /// <summary>
+        /// 财务涉及单据号
+        /// </summary>
         public virtual string TicketId{get;set;}
+        /// <summary>
+        /// 财务发生原因
+        /// </summary>
         public virtual string Resone { get; set; }
+        /// <summary>
+        /// 财务发生对象
+        /// </summary>
         public virtual string TargetUserName { get; set; }
+        /// <summary>
+        /// 此次财务收入额
+        /// </summary>
         public virtual decimal InMoney { get; set; }
+        /// <summary>
+        /// 此次财务支出额
+        /// </summary>
         public virtual decimal OutMoney { get; set; }
+        /// <summary>
+        /// 备注
+        /// </summary>
         public virtual string OtherInfo { get; set; }
     }
 }

@@ -22,19 +22,36 @@ namespace CJCMS.Contracts.DTO.Category
 {
     public class CategoryDTO
     {
+        /// <summary>
+        /// 数据字典名称
+        /// </summary>
         [NotNullValidator]
         [StringLengthValidator(1, 50, Ruleset = "RuleSetA", MessageTemplate = "分类名称必须介于1~50个字符")]
         public string CategoryName { get; set; }
+        /// <summary>
+        /// 是否在首页显示
+        /// </summary>
         public bool IsDisplayHome { get; set; }
+        /// <summary>
+        /// 显示顺序
+        /// </summary>
         [NotNullValidator]
         [RangeValidator(0,RangeBoundaryType.Inclusive,500,RangeBoundaryType.Inclusive)]
         public int SortNum { get; set; }
+        /// <summary>
+        /// 父节点编号
+        /// </summary>
         [NotNullValidator]
         public string ParentId { get; set; }
+        /// <summary>
+        /// 深度
+        /// </summary>
         [NotNullValidator]
         [RangeValidator(0,RangeBoundaryType.Inclusive,500,RangeBoundaryType.Inclusive)]
         public int Deepth { get; set; }
-
+        /// <summary>
+        /// 状态
+        /// </summary>
         public string Status { get; set; }
     }
 }

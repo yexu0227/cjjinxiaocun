@@ -21,14 +21,41 @@ namespace CJCMS.Domain.Entity
 {
     public  class BuyIn : IEntity
     {
+        /// <summary>
+        /// 采购编号
+        /// </summary>
         public virtual string Id { get; set; }
+        /// <summary>
+        /// 创建时间
+        /// </summary>
         public virtual DateTime Created { get; set; }
+        /// <summary>
+        /// 折扣1~10
+        /// </summary>
         public virtual int Discount { get; set; }
+        /// <summary>
+        /// 单据号
+        /// </summary>
         public virtual string TicketNo { get; set; }
+        /// <summary>
+        /// 总价
+        /// </summary>
         public virtual decimal AllPrice { get; set; }
+        /// <summary>
+        /// 单据类型
+        /// </summary>
         public virtual int Type { get; set; }
+        /// <summary>
+        /// 已付款额
+        /// </summary>
         public virtual decimal PaiedPrice { get; set; }
+        /// <summary>
+        /// 状态
+        /// </summary>
         public virtual int Status { get; set; }
+        /// <summary>
+        /// 备注
+        /// </summary>
         public virtual string OtherInfo { get; set; }
     }
 }

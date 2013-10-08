@@ -21,15 +21,45 @@ namespace CJCMS.Domain.Entity
 {
     public class SellItem : IEntity
     {
+        /// <summary>
+        /// 销售项目编号
+        /// </summary>
         public virtual string Id { get; set; }
+        /// <summary>
+        /// 客户编号
+        /// </summary>
         public virtual string CustomerId { get; set; }
+        /// <summary>
+        /// 商品编号
+        /// </summary>
         public virtual string ProductId { get; set; }
+        /// <summary>
+        /// 商品分类
+        /// </summary>
         public virtual string CategoryId { get; set; }
+        /// <summary>
+        /// 商品名称
+        /// </summary>
         public virtual string ProductName { get; set; }
+        /// <summary>
+        /// 商品计量单位
+        /// </summary>
         public virtual string Unit { get; set; }
+        /// <summary>
+        /// 单价
+        /// </summary>
         public virtual decimal SinglePrice { get; set; }
+        /// <summary>
+        /// 主销售实体编号
+        /// </summary>
         public virtual string SellId { get; set; }
+        /// <summary>
+        /// 商品数
+        /// </summary>
         public virtual int Count { get; set; }
+        /// <summary>
+        /// 备注
+        /// </summary>
         public virtual string OtherInfo { get; set; }
     }
 }
